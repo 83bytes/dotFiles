@@ -1,39 +1,45 @@
 #!/bin/sh
 
+# Author: Sohom Bhattacharjee
 
-# will link all the dotfiles
+# This script will link all the sources with all the destinations.
+# Use this to manage configuration files
 
 # Define Constants
 HOME=/home/sohom
 DOT=/mnt/data/work_space/dotFiles
 
-# LINKS
 
-# xinitrc
-ln -vs $DOT/xinitrc  $HOME/.xinitrc 
+# Source Array
+SOURCE=( xinitrc
+	 xbindkeysrc.scm
+	 Xresources
+	 vimrc
+	 config/fish
+	 config/i3
+	 config/i3status
+	 emacs.d/config.org
+	 emacs.d/init.el
+	 scripts/battery.sh
+       )
 
-# xbindkeys
-ln -vs $DOT/xbindkeysrc.scm $HOME/.xbindkeysrc.scm 
+# Destination Array
+DEST=( .xinitrc
+       .xbindkeysrc.scm
+       .Xresources
+       .vimrc
+       .config/fish
+       .config/i3
+       .config/i3status
+       .emacs.d/config.org
+       .emacs.d/init.el
+       /work_space/scripts/battery.sh
+     )
 
-# Xresources
-ln -vs $DOT/Xresources $HOME/.Xresources
+len=${#SOURCE[*]}
 
-# vimrc
-ln -vs $DOT/vimrc $HOME/.vimrc
-
-# fish
-ln -vs $DOT/config/fish $HOME/.config/fish
-
-# i3
-ln -vs $DOT/config/i3 $HOME/.config/i3
-
-# i3status
-ln -vs $DOT/config/i3status $HOME/.config/i3status
-
-# emacs
-ln -vs $DOT/emacs.d/config.org $HOME/.emacs.d/config.org
-ln -vs $DOT/emacs.d/init.el $HOME/.emacs.d/init.el
-
-
-
+for ((i = 0; i < len ; i++))
+do
+    ln -vs $DOT/${SOURCE[i]} $HOME/${DEST[i]}
+done
 
