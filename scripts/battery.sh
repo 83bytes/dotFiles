@@ -1,5 +1,5 @@
 #!/bin/bash
-notify-send "test"
+
 # need to add some stuff so that cron can run this shit
 SHELL=/bin/bash
 PATH=/usr/lib/ccache/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
