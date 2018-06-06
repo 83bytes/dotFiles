@@ -238,7 +238,7 @@
 ** Company anaconda
 #+BEGIN_SRC emacs-lisp
 
-(eval-after-load "company"
+eval-after-load "company"
  '(add-to-list 'company-backends 'company-anaconda))
 
 #+END_SRC
