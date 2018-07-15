@@ -21,3 +21,5 @@ path=(/home/sohom/work_space/anaconda3/bin /home/sohom/.gem/ruby/2.4.0/bin /usr/
 
 
 # path=(~/.local/bin /other/things/in/path $path[@])
+
+export TERM=xterm
