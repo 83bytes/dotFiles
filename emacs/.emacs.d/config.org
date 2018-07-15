@@ -75,7 +75,11 @@
 ;; SMART PARENS ;;;;
 (smartparens-global-mode 1)
 (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode)
-(show-paren-mode)
+(show-paren-mode t)
+(setq show-paren-style 'expression)
+(set-face-attribute 'show-paren-match-expression nil 
+		    :background "dark cyan")
+
 #+END_SRC
 
 * Packages
