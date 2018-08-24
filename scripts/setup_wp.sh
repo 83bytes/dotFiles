@@ -15,7 +15,7 @@ dunst&!
 notify-send "dunst started successfully"
 
 # open telegram in wp 7
-i3-msg 'workspace 9; exec /mnt/data/programsRunning/Telegram/Telegram&'
+i3-msg 'workspace 9; exec telegram-desktop'
 i3-msg 'workspace 9; exec gajim; exec thunderbird'
 #i3-msg 'workspace 9; exec riot-desktop'
 sleep 20s # hit password while it sleeps

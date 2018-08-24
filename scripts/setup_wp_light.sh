@@ -13,7 +13,7 @@ notify-send "dunst started successfully"
 i3-msg 'exec clementine'
 
 # open telegram in wp 9
-i3-msg 'workspace 9; exec /mnt/data/programsRunning/Telegram/Telegram&'
+i3-msg 'workspace 9; exec telegram-desktop'
 sleep 20s # hit password while it sleeps
 
 
