@@ -7,9 +7,7 @@
 (setq package-archives '(("melpa-stable" . "http://stable.melpa.org/packages/")
 				("org" . "http://orgmode.org/elpa/")
 				("gnu" . "http://elpa.gnu.org/packages/")))
-(package-refresh-contents)
 
 ;; this line loads the emacs config from the org mode file.
 (org-babel-load-file (expand-file-name "~/.emacs.d/config.org"))
-
 

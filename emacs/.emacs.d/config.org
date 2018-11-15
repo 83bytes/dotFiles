@@ -171,6 +171,12 @@
 
 #+END_SRC
 
+** Elpy
+#+BEGIN_SRC emacs-lisp
+
+(elpy-enable)
+
+#+END_SRC
 ** server mode
 #+BEGIN_SRC emacs-lisp
 ;;server mode start
