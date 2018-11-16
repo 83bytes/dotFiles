@@ -173,9 +173,7 @@
 
 ** Elpy
 #+BEGIN_SRC emacs-lisp
-
 (elpy-enable)
-
 #+END_SRC
 ** server mode
 #+BEGIN_SRC emacs-lisp
@@ -239,19 +237,6 @@
   (setq markdown-command "markdown_py"))
 #+END_SRC
 
-** Anaconda Mode
-#+BEGIN_SRC emacs-lisp
-(add-hook 'python-mode-hook 'anaconda-mode)
-(add-hook 'python-mode-hook 'anaconda-eldoc-mode)
-#+END_SRC
-
-** Company anaconda
-#+BEGIN_SRC emacs-lisp
-
-(eval-after-load "company"
- '(add-to-list 'company-backends 'company-anaconda))
-
-#+END_SRC
 * MISC 
 ** backup files 
 
