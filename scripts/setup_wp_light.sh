@@ -7,6 +7,8 @@
 dunst&!
 notify-send "dunst started successfully"
 
+redshift&
+
 i3-msg 'exec clementine'
 
 # open telegram in wp 9

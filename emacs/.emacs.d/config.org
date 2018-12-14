@@ -18,20 +18,6 @@
 (use-package powerline
 	     :ensure t)
 
-;; use smart mode line powerline theme
-;; (use-package smart-mode-line-powerline-theme
-;; 	     :ensure t)
-
- ;; setting up smart mode line
-;; (use-package smart-mode-line
-;; 	     :ensure t
-;; 	     :config
-;; 	     (require 'powerline)
-;; 	     (setq powerline-default-separator-dir '(right . left))
-;; 	     (setq sml/theme 'powerline)
-;; 	     (setq sml/no-confirm-load-theme t)
-;; 	     (sml/setup))
-
 #+END_SRC
 
 ** Toolbars
