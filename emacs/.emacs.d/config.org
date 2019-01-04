@@ -127,11 +127,11 @@
 (define-key global-map "\C-cc" 'org-capture)
 
 (setq org-capture-templates
- '(("t" "Todo" entry (file+headline "~/work_space/todo/TODO.org" "TASKS")
+ '(("t" "Todo" entry (file+headline "~/work_space/.personal/todo/TODO.org" "TASKS")
         "* TODO %?\n  %i\n  %a")
-   ("b" "Blog" entry (file+headline "~/work_space/todo/TODO.org" "BLOG")
+   ("b" "Blog" entry (file+headline "~/work_space/.personal/todo/TODO.org" "BLOG")
 	"* TODO %?\n  %i\n  %a")
-   ("p" "Project" entry (file+headline "~/work_space/todo/TODO.org" "PROJECTS")
+   ("p" "Project" entry (file+headline "~/work_space/.personal/todo/TODO.org" "PROJECTS")
 	"* TODO %?\n  %i\n  %a")))
 
 
