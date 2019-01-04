@@ -122,7 +122,7 @@
 
 
 ;; default directory to save org mode capture files
-(setq org-directory "/home/sohom/work_space/todo/")
+(setq org-directory "/home/sohom/work_space/.personal/todo/")
 (setq org-default-notes-file (concat org-directory "/TODO.org"))
 (define-key global-map "\C-cc" 'org-capture)
 
@@ -136,7 +136,7 @@
 
 
 ;; TODO file
-(global-set-key (kbd "<f6>") (lambda() (interactive)(find-file "/home/sohom/work_space/todo/TODO.org")))
+(global-set-key (kbd "<f6>") (lambda() (interactive)(find-file "/home/sohom/work_space/.personal/todo/TODO.org")))
 
 
 ;; agenda file 
