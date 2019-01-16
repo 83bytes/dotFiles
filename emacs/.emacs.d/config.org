@@ -140,7 +140,7 @@
 
 
 ;; agenda file 
-(add-to-list 'org-agenda-files "/home/sohom/work_space/todo/TODO.org")
+(add-to-list 'org-agenda-files "/home/sohom/work_space/.personal/todo/TODO.org")
 (global-set-key "\C-ca" 'org-agenda)
 (setq org-agenda-use-time-grid t)
 
