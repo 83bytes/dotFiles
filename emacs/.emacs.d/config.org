@@ -96,7 +96,7 @@
 (require 'org)
 
 ;; set a time-stamp when todo state changes
-(setq org-log-done 'note)
+(setq org-log-done 'time)
 
 ;; set a time for repeating tasks
 (setq org-log-repeat 'time)
@@ -104,12 +104,14 @@
 ;; added custom states for todo list
 (setq org-todo-keywords '((sequence "TODO(t)" "|" "DONE(d)")
 			  (sequence "|" "CANCEL(c)")
+			  (sequence "|" "SKIP(k)")
                           (sequence "STARTED(s)" "|")
                           (sequence "WAITING(w)" "|" )))
 
 ;; added color for custom states
 (setq org-todo-keyword-faces
       (quote (("CANCEL" :foreground "red" :weight bold)
+              ("SKIP" :foreground "blue" :weight bold)
 	      ("DONE" :foreground "green" :weight bold)
 	      ("WAITING" :foreground "yellow")
               ("STARTED" :foreground "orange" :weight bold))))
