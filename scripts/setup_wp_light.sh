@@ -10,15 +10,3 @@ notify-send "dunst started successfully"
 redshift&
 
 i3-msg 'exec clementine'
-
-# open telegram in wp 9
-i3-msg 'workspace 9; exec telegram-desktop'
-sleep 20s # hit password while it sleeps
-
-
-# i3-msg 'workspace 3; exec emacs'
-
-i3-msg 'workspace 2; exec firefox'
-
-
-
