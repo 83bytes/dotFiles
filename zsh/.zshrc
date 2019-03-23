@@ -12,6 +12,14 @@ fi
 unsetopt correct
 
 alias ls="ls --color --classify"
+
+# start a emacs thingy in the terminal (for very very small files)
+alias ted="emacsclient -nw"
+
+# start a emacs buffer with a new frame. 
+alias ned="emacsclient -nc"
+
+
 unset RPROMPT
 
 
@@ -23,6 +31,7 @@ path=(/home/sohom/work_space/anaconda3/bin /home/sohom/.gem/ruby/2.4.0/bin /usr/
 # path=(~/.local/bin /other/things/in/path $path[@])
 
 export TERM=xterm
+source /usr/share/nvm/init-nvm.sh
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/sohom/google-cloud-sdk/path.zsh.inc' ]; then . '/home/sohom/google-cloud-sdk/path.zsh.inc'; fi
