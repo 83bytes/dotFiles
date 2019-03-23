@@ -52,6 +52,8 @@
 
 #+BEGIN_SRC emacs-lisp
 ;; tab-width
+
+(setq-default indent-tabs-mode nil)
 (setq tab-width 4)
 #+END_SRC
 
@@ -223,6 +225,17 @@
          ("\\.markdown\\'" . markdown-mode))
   :init
   (setq markdown-command "markdown_py"))
+#+END_SRC
+
+** Babel
+#+BEGIN_SRC emacs-lisp
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((ruby . t)
+   (scheme . t)
+   (python . t)
+   ))
+
 #+END_SRC
 
 * MISC 
