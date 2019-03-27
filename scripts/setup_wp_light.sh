@@ -9,4 +9,4 @@ notify-send "dunst started successfully"
 
 redshift&
 
-i3-msg 'exec clementine'
+
