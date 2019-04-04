@@ -37,7 +37,7 @@
 (xbindkey '("Print") "scrot '%Y-%m-%d-%X_$wx$h.png' -e 'mv $f ~/Documents/sshots/'")
 
 ;; Org Global Capture (Ctrl + semicolon to launch emacs window for org-capture)
-(xbindkey '("Control" "semicolon") "emacsclient -n -e '(make-capture-frame)'")
+(xbindkey '("Control" "Shift" "semicolon") "emacsclient -n -e '(make-capture-frame)'")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; End of xbindkeys guile configuration ;;
