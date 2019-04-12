@@ -13,16 +13,16 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; LOCK  Mod + O
-(xbindkey '("Mod4" "o") "i3lock -fc 000000")
+(xbindkey '("Alt" "o") "i3lock -fc 000000")
 
 ;; SUSPEND Mod + P
-(xbindkey '("Mod4" "p") "systemctl suspend && i3lock -fc 000000")
+(xbindkey '("ALt" "p") "systemctl suspend && i3lock -fc 000000")
 
-;; terminal
-(xbindkey '("Mod4" "Return") "urxvt")
+;; terminal,
+(xbindkey '("Alt" "Return") "urxvt")
 
 ;; dmenu
-(xbindkey '("Mod4" "d") "dmenu_run")
+(xbindkey '("Alt" "d") "dmenu_run")
 
 ;; AUDIO
 (xbindkey '("XF86AudioMute") "amixer -D pulse set Master 1+ toggle")
