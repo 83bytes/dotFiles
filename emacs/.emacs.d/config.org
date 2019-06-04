@@ -60,13 +60,31 @@
 ** Parens
 
 #+BEGIN_SRC emacs-lisp
-;; SMART PARENS ;;;;
-(smartparens-global-mode 1)
-(add-hook 'smartparens-enabled-hook #'evil-smartparens-mode)
-(show-paren-mode t)
-(setq show-paren-style 'expression)
-(set-face-attribute 'show-paren-match-expression nil 
-		    :background "dark cyan")
+  ;; SMART PARENS ;;;;
+  (smartparens-global-mode 1)
+  (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode)
+  (show-paren-mode t)
+  (setq show-paren-style 'mixed)
+  (set-face-attribute 'show-paren-match-expression nil 
+                      :background "dark cyan")
+
+  (dolist (hook '(emacs-lisp-mode-hook
+                 lisp-mode-hook scheme-mode-hook))
+  (add-hook hook 'smartparens-strict-mode))
+  (add-hook 'smartparens-enabled-hook 'evil-smartparens-mode)
+
+  (with-eval-after-load 'smartparens
+  (evil-define-key 'normal smartparens-mode-map
+    "l" 'sp-forward-sexp
+    "h" 'sp-backward-sexp
+    "L" 'sp-up-sexp
+    "H" 'sp-backward-up-sexp
+    "<" 'sp-backward-slurp-sexp
+    ">" 'sp-forward-slurp-sexp
+    "}" 'sp-backward-barf-sexp
+    "{" 'sp-forward-barf-sexp)
+  (require 'smartparens-config))
+
 
 #+END_SRC
 
