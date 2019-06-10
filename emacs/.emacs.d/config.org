@@ -1,28 +1,40 @@
 * Gui modifications
+** Theme
+#+BEGIN_SRC emacs-lisp
+
+(load-theme 'zenburn t)
+
+#+END_SRC
+** y/n instead of yes and no
+#+BEGIN_SRC emacs-lisp
+
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+#+END_SRC
 ** Line and Coulmn Numbering
 
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 ;; enable relative line numbering and column numbering
 (linum-relative-global-mode 1)
 (setq linum-relative-current-symbol "")
 (column-number-mode 1)
-#+END_SRC
+   #+END_SRC
 
 ** Powerline 
 
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 ;; enable global visual line mo
 (global-visual-line-mode t)
 
 ;; use powerline
 (use-package powerline
-	     :ensure t)
+             :ensure t)
 
-#+END_SRC
+   #+END_SRC
 
 ** Toolbars
 
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 ;; disable toolbar
 (tool-bar-mode -1)
 
@@ -32,34 +44,34 @@
 ;; disable scroll-bar
 (scroll-bar-mode -1)
 
-#+END_SRC
+   #+END_SRC
 
 ** C/C++ style 
 
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 ;; set c/c++ default indent to 8
 (setq c-default-style "linux")
-#+END_SRC
+   #+END_SRC
 
 ** Splash Screen
 
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
   ;; stop the splash screen in
   (setq inhibit-splash-screen t)
-#+END_SRC
+   #+END_SRC
 
 ** TABS 
 
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 ;; tab-width
 
 (setq-default indent-tabs-mode nil)
 (setq tab-width 4)
-#+END_SRC
+   #+END_SRC
 
 ** Parens
 
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
   ;; SMART PARENS ;;;;
   (smartparens-global-mode 1)
   (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode)
@@ -69,29 +81,20 @@
                       :background "dark cyan")
 
   (dolist (hook '(emacs-lisp-mode-hook
-                 lisp-mode-hook scheme-mode-hook))
-  (add-hook hook 'smartparens-strict-mode))
+                 lisp-mode-hook scheme-mode-hook)))
   (add-hook 'smartparens-enabled-hook 'evil-smartparens-mode)
 
   (with-eval-after-load 'smartparens
-  (evil-define-key 'normal smartparens-mode-map
-    "l" 'sp-forward-sexp
-    "h" 'sp-backward-sexp
-    "L" 'sp-up-sexp
-    "H" 'sp-backward-up-sexp
-    "<" 'sp-backward-slurp-sexp
-    ">" 'sp-forward-slurp-sexp
-    "}" 'sp-backward-barf-sexp
-    "{" 'sp-forward-barf-sexp)
-  (require 'smartparens-config))
+  
+     (require 'smartparens-config))
 
 
-#+END_SRC
+   #+END_SRC
 
 * Packages
 ** HELM
 
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 
 ;; enabling async
 (add-to-list 'load-path "/home/sohom/.emacs.d/packages/async")
@@ -107,11 +110,11 @@
 
 (helm-mode 1)
 
-#+END_SRC
+   #+END_SRC
 
 ** org mode
 
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 
 (require 'org)
 
@@ -123,8 +126,8 @@
 
 ;; added custom states for todo list
 (setq org-todo-keywords '((sequence "TODO(t)" "|" "DONE(d)")
-			  (sequence "|" "CANCEL(c)")
-			  (sequence "|" "SKIP(k)")
+                          (sequence "|" "CANCEL(c)")
+                          (sequence "|" "SKIP(k)")
                           (sequence "STARTED(s)" "|")
                           (sequence "WAITING(w)" "|" )))
 
@@ -132,15 +135,15 @@
 (setq org-todo-keyword-faces
       (quote (("CANCEL" :foreground "red" :weight bold)
               ("SKIP" :foreground "blue" :weight bold)
-	      ("DONE" :foreground "green" :weight bold)
-	      ("WAITING" :foreground "yellow")
+              ("DONE" :foreground "green" :weight bold)
+              ("WAITING" :foreground "yellow")
               ("STARTED" :foreground "orange" :weight bold))))
 
 
 ;; do a separate add-to-list to add new file extentions
 ;; put default mode for specific files
 (add-to-list 'auto-mode-alist
-	     '("\\.note" . org-mode))
+             '("\\.note" . org-mode))
 
 
 ;; default directory to save org mode capture files
@@ -152,9 +155,9 @@
  '(("t" "Todo" entry (file+headline "~/work_space/.personal/todo/TODO.org" "TASKS")
         "* TODO %?\n  %i\n  %a")
    ("b" "Blog" entry (file+headline "~/work_space/.personal/todo/TODO.org" "BLOG")
-	"* TODO %?\n  %i\n  %a")
+        "* TODO %?\n  %i\n  %a")
    ("p" "Project" entry (file+headline "~/work_space/.personal/todo/TODO.org" "PROJECTS")
-	"* TODO %?\n  %i\n  %a")))
+        "* TODO %?\n  %i\n  %a")))
 
 
 ;; TODO file
@@ -166,21 +169,14 @@
 (global-set-key "\C-ca" 'org-agenda)
 (setq org-agenda-use-time-grid t)
 
-;; tags
-
-(setq org-tag-alist '(("work" . ?w)
-		      ("study" . ?s)
-                      ("fsmk" . ?f)
-		      ("family" . ?y)))
-
 ;; org refile
 (custom-set-variables '(org-refile-targets (quote (("todoArchive.org" :maxlevel . 1)))))
-#+END_SRC
+   #+END_SRC
 
 
 *** ORG Capture Globally
 
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
 (defadvice org-capture-finalize
   (after delete-capture-frame activate)
    "Advise capture-finalize to close the frame"
@@ -208,23 +204,23 @@
    (setq word-wrap 1)
    (setq truncate-lines nil)
    (org-capture))
-#+END_SRC
+    #+END_SRC
 
-#+RESULTS:
-: make-capture-frame
+    #+RESULTS:
+    : make-capture-frame
 
 ** Elpy
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 (elpy-enable)
-#+END_SRC
+   #+END_SRC
 ** server mode
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 ;;server mode start
 (server-mode 1)
-#+END_SRC
+   #+END_SRC
 
 ** Anzu
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 
 (require 'anzu)
 (global-anzu-mode +1)
@@ -243,32 +239,32 @@
 (global-set-key (kbd "M-%") 'anzu-query-replace)
 (global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)
 
-#+END_SRC
+   #+END_SRC
 
 ** Latex
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 
 ;; bigger latex fragment
 (plist-put org-format-latex-options :scale 2.0)
 
 (setq org-export-with-email t)
 
-#+END_SRC
+   #+END_SRC
 ** magit
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 
 (global-set-key (kbd "C-x g") #'magit-status)
 
-#+END_SRC
+   #+END_SRC
 ** Company 
 
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 (add-hook 'after-init-hook 'global-company-mode)
-#+END_SRC
+   #+END_SRC
    
 ** Markdown Mode
 
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
@@ -277,10 +273,10 @@
          ("\\.markdown\\'" . markdown-mode))
   :init
   (setq markdown-command "markdown_py"))
-#+END_SRC
+   #+END_SRC
 
 ** Babel
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((ruby . t)
@@ -288,20 +284,20 @@
    (python . t)
    ))
 
-#+END_SRC
+   #+END_SRC
 
 * MISC 
 ** backup files 
 
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 ;
 ; diable making backup files 
 (setq make-backup-files nil)
 
-#+END_SRC 
+   #+END_SRC 
   
 * EVIL 
-#+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC emacs-lisp
 ;; END PART
 ;; enable  evil package
 ;; this file needs to go in the END
@@ -309,4 +305,14 @@
 ;; and load key-bindings accordingly :-)
 (require 'evil)
 (evil-mode 1)
-#+END_SRC
+
+(evil-define-key 'normal smartparens-mode-map
+"l" 'sp-forward-sexp
+"h" 'sp-backward-sexp
+"L" 'sp-up-sexp
+"H" 'sp-backward-up-sexp
+"<" 'sp-backward-slurp-sexp
+">" 'sp-forward-slurp-sexp
+"}" 'sp-backward-barf-sexp
+"{" 'sp-forward-barf-sexp)
+  #+END_SRC
