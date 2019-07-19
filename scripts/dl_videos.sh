@@ -1,10 +1,11 @@
 #/bin/bash
 
-# $1 has the url
+# $@ has all urls as yl-dl supports multiple urls
+# do not mix playlist and non-playlist urls
 
-if [[ $1 == *"playlist?"* ]]; then
-    youtube-dl -f best -cio '%(playlist_index)s-%(title)s.%(ext)s' $1 --download-archive youtubedl_archive
+if [[ $@ == *"playlist?"* ]]; then
+    youtube-dl -f best -cio '%(playlist_index)s-%(title)s.%(ext)s' $@ --download-archive youtubedl_archive --limit-rate 500K
 else
-    youtube-dl -f best -cio '%(playlist_index)s-%(title)s.%(ext)s' $1
+    youtube-dl -f best -cio '%(playlist_index)s-%(title)s.%(ext)s' $@ --limit-rate 500K
 fi
 
