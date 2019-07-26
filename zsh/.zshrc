@@ -64,3 +64,10 @@ pyenv() {
 #
 #
 #if command -v pyenv 1>/dev/null 2>&1; then eval "$(pyenv init -)"; fi
+
+
+# This is for different ssh keys for github
+
+alias gits='GIT_SSH_COMMAND="ssh -i ~/.ssh/git_people" git'
+alias gitp='GIT_SSH_COMMAND="ssh -i ~/.ssh/github" git'
+

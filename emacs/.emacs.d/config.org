@@ -77,8 +77,8 @@
   (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode)
   (show-paren-mode t)
   (setq show-paren-style 'mixed)
-  (set-face-attribute 'show-paren-match-expression nil 
-                      :background "dark cyan")
+  ;;(set-face-attribute 'show-paren-match-expression nil 
+  ;;                    :background "dark cyan")
 
   (dolist (hook '(emacs-lisp-mode-hook
                  lisp-mode-hook scheme-mode-hook)))
