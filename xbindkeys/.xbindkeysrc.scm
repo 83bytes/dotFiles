@@ -24,14 +24,34 @@
 ;; dmenu
 (xbindkey '("Mod4" "d") "dmenu_run")
 
-;; AUDIO
-(xbindkey '("XF86AudioMute") "amixer -D pulse set Master 1+ toggle")
-(xbindkey '("XF86AudioLowerVolume")' "amixer -D pulse sset Master 5%-")
-(xbindkey '("XF86AudioRaiseVolume")' "amixer -D pulse sset Master 5%+")
+;; AUDIO - HP
+(xbindkey '("F6") "amixer -D pulse set Master 1+ toggle")
+(xbindkey '("F7")' "amixer -D pulse sset Master 5%-")
+(xbindkey '("F8")' "amixer -D pulse sset Master 5%+")
 
-;; BRIGHTNESS
-(xbindkey '("XF86MonBrightnessUp") "light -A 10")
-(xbindkey '("XF86MonBrightnessDown") "light -U 10")
+;; AUDIO - thinkpad
+;; (xbindkey '("F6") "amixer -D pulse set Master 1+ toggle")
+;; (xbindkey '("F7")' "amixer -D pulse sset Master 5%-")
+;; (xbindkey '("F8")' "amixer -D pulse sset Master 5%+")
+
+;; BRIGHTNESS - HP
+(xbindkey '("F3") "light -A 10")
+(xbindkey '("F2") "light -U 10")
+
+;; BRIGHTNESS - thinkpad (light is better than xorg-backlight)
+;; (xbindkey '("F3") "light -A 10")
+;; (xbindkey '("F2") "light -U 10")
+
+;; PLAYER - HP
+(xbindkey '("F9") "playerctl previous")
+(xbindkey '("F10")' "playerctl play-pause")
+(xbindkey '("F11")' "playerctl next")
+
+
+;; PLAYER - thinkpad
+;; (xbindkey '("F9") "playerctl previous")
+;; (xbindkey '("F10")' "playerctl play-pause")
+;; (xbindkey '("F11")' "playerctl next")
 
 ;; SCREENSHOT (click and move to sshots dir)
 (xbindkey '("Print") "scrot '%Y-%m-%d-%X_$wx$h.png' -e 'mv $f ~/Documents/sshots/'")
