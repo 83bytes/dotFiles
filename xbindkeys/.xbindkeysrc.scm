@@ -13,10 +13,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; LOCK  Mod + O
-(xbindkey '("Mod4" "o") "i3lock -fc 000000")
+(xbindkey '("Mod4" "o") "playerctl pause && i3lock -fc 000000")
 
 ;; SUSPEND Mod + P
-(xbindkey '("Mod4" "p") "systemctl suspend && i3lock -fc 000000")
+(xbindkey '("Mod4" "p") "playerctl pause && systemctl suspend && i3lock -fc 000000")
 
 ;; terminal
 (xbindkey '("Mod4" "Return") "urxvt")
