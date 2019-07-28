@@ -73,5 +73,5 @@ pyenv() {
 # This is for different ssh keys for github
 
 alias gits='GIT_SSH_COMMAND="ssh -i ~/.ssh/git_people" git'
-alias gitp='GIT_SSH_COMMAND="ssh -i ~/.ssh/github" git'
+alias gitp='GIT_SSH_COMMAND="ssh -i ~/.ssh/git_personal" git'
 
