@@ -16,10 +16,10 @@
 (xbindkey '("Mod4" "o") "playerctl pause ; i3lock -fc 000000")
 
 ;; SUSPEND Mod + P
-(xbindkey '("Mod4" "p") "playerctl pause ; systemctl suspend && i3lock -fc 000000")
+(xbindkey '("Mod4" "p") "playerctl pause ; sudo systemctl suspend && i3lock -fc 000000")
 
 ;; terminal
-(xbindkey '("Mod4" "Return") "urxvt")
+(xbindkey '("Mod4" "Return") "urxvt -e zsh")
 
 ;; dmenu
 (xbindkey '("Mod4" "d") "dmenu_run")

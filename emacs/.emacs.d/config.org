@@ -161,7 +161,7 @@
 
 
 ;; TODO file
-(global-set-key (kbd "<f6>") (lambda() (interactive)(find-file "/home/sohom/work_space/.personal/todo/TODO.org")))
+(global-set-key (kbd "<f12>") (lambda() (interactive)(find-file "/home/sohom/work_space/.personal/todo/TODO.org")))
 
 
 ;; agenda file 
