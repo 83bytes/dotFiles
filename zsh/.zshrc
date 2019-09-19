@@ -79,3 +79,4 @@ alias gitp='GIT_SSH_COMMAND="ssh -i ~/.ssh/git_personal" git'
 # This is for GO-Lang.
 # Set up the system GOPATH
 export GOPATH=$HOME/work_space/go
+export PATH=$PATH:$GOPATH/bin

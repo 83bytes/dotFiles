@@ -96,6 +96,13 @@
    #+END_SRC
 
 * Packages
+** Autocomplete
+
+#+BEGIN_SRC emacs-lisp
+
+(auto-complete-mode 1)
+
+#+END_SRC
 ** HELM
 
    #+BEGIN_SRC emacs-lisp
@@ -290,6 +297,22 @@
 
    #+END_SRC
 
+** GO
+#+BEGIN_SRC emacs-lisp
+;; set GOPATH
+(setenv "GOPATH" "/home/sohomb/work_space/go")
+
+;; set exec path to find go binaries
+(add-to-list 'exec-path "/home/sohomb/work_space/go/bin")
+
+;; add gofmt hook
+(add-hook 'before-save-hook 'gofmt-before-save)
+
+;; go autocomplete mode
+(with-eval-after-load 'go-mode
+    (require 'go-autocomplete))
+
+#+END_SRC
 * MISC 
 ** backup files 
 
