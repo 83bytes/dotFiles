@@ -69,6 +69,10 @@
 (setq tab-width 4)
    #+END_SRC
 
+** Highlight single line
+#+BEGIN_SRC emacs-lisp
+(global-hl-line-mode 1)
+#+END_SRC
 ** Parens
 
    #+BEGIN_SRC emacs-lisp
