@@ -8,6 +8,6 @@
 if [[ $@ == *"playlist?"* ]]; then
     youtube-dl -f best -cio '%(playlist_index)s-%(title)s.%(ext)s' $@ --download-archive youtubedl_archive
 else
-    youtube-dl -f best -cio '%(playlist_index)s-%(title)s.%(ext)s' $@ 
+    youtube-dl -f best -cio '%(title)s.%(ext)s' $@ 
 fi
 
