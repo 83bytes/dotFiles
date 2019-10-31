@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 # $@ has all urls as yl-dl supports multiple urls
 # do not mix playlist and non-playlist urls
