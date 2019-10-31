@@ -49,9 +49,9 @@
 
 
 ;; PLAYER - thinkpad
-(xbindkey '("F9") "playerctl previous")
-(xbindkey '("F10")' "playerctl play-pause")
-(xbindkey '("F11")' "playerctl next")
+(xbindkey '("F9") "playerctl previous -a")
+(xbindkey '("F10")' "playerctl play-pause -a")
+(xbindkey '("F11")' "playerctl next -a")
 
 ;; SCREENSHOT (click and move to sshots dir)
 (xbindkey '("Print") "scrot '%Y-%m-%d-%X_$wx$h.png' -e 'mv $f ~/Documents/sshots/'")
