@@ -315,6 +315,12 @@
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
 #+END_SRC
+** Dumb-Jump
+#+BEGIN_SRC emacs-lisp
+
+(dumb-jump-mode 1)
+
+#+END_SRC 
 ** GO
 #+BEGIN_SRC emacs-lisp
 ;; set GOPATH
