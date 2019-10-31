@@ -72,6 +72,9 @@
 ** Highlight single line
 #+BEGIN_SRC emacs-lisp
 (global-hl-line-mode 1)
+
+(beacon-mode 1)
+
 #+END_SRC
 ** Parens
 
@@ -297,6 +300,15 @@
 
    #+END_SRC
 
+** YAML
+#+BEGIN_SRC emacs-lisp
+
+(use-package yaml-mode
+     :ensure t)
+
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+
+#+END_SRC
 ** GO
 #+BEGIN_SRC emacs-lisp
 ;; set GOPATH
@@ -314,6 +326,28 @@
 
 #+END_SRC
 * MISC 
+** Always follow symlinks
+
+#+BEGIN_SRC emacs-lisp
+(setq vc-follow-symlinks t)
+
+#+END_SRC
+** Auto revert files on change
+#+BEGIN_SRC emacs-lisp
+(global-auto-revert-mode t)
+
+#+END_SRC
+** Enable narrowing of buffers 
+#+BEGIN_SRC emacs-lisp
+ (put 'narrow-to-region 'disabled nil) 
+
+#+END_SRC
+** Use shift+arrow to change windows
+#+BEGIN_SRC emacs-lisp
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
+
+#+END_SRC 
 ** backup files 
 
    #+BEGIN_SRC emacs-lisp
@@ -324,22 +358,15 @@
    #+END_SRC 
   
 * EVIL 
+END PART
+enable  evil package
+this file needs to go in the END
+so that evil can DETECT all other packages
+and load key-bindings accordingly :-)
+
   #+BEGIN_SRC emacs-lisp
-;; END PART
-;; enable  evil package
-;; this file needs to go in the END
-;; so that evil can DETECT all other packages
-;; and load key-bindings accordingly :-)
 (require 'evil)
 (evil-mode 1)
+    #+END_SRC
 
-(evil-define-key 'normal smartparens-mode-map
-"l" 'sp-forward-sexp
-"h" 'sp-backward-sexp
-"L" 'sp-up-sexp
-"H" 'sp-backward-up-sexp
-"<" 'sp-backward-slurp-sexp
-">" 'sp-forward-slurp-sexp
-"}" 'sp-backward-barf-sexp
-"{" 'sp-forward-barf-sexp)
-  #+END_SRC
+
