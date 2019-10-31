@@ -74,7 +74,7 @@
 (global-hl-line-mode 1)
 
 (beacon-mode 1)
-
+(setq beacon-color "red")
 #+END_SRC
 ** Parens
 
@@ -344,8 +344,8 @@
 #+END_SRC
 ** Use shift+arrow to change windows
 #+BEGIN_SRC emacs-lisp
-(when (fboundp 'windmove-default-keybindings)
-  (windmove-default-keybindings))
+;;(when (fboundp 'windmove-default-keybindings)
+;;  (windmove-default-keybindings))
 
 #+END_SRC 
 ** backup files 
