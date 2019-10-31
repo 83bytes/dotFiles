@@ -76,6 +76,12 @@
 (beacon-mode 1)
 (setq beacon-color "red")
 #+END_SRC
+** Golden ratio mode
+#+BEGIN_SRC emacs-lisp
+
+(golden-ratio-mode 1)
+
+#+END_SRC 
 ** Parens
 
    #+BEGIN_SRC emacs-lisp
