@@ -1,4 +1,8 @@
 * Gui modifications
+** Encoding
+#+BEGIN_SRC emacs-lisp
+(prefer-coding-system 'utf-8)
+#+END_SRC
 ** Theme
 #+BEGIN_SRC emacs-lisp
 
