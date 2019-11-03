@@ -3,12 +3,6 @@
 #+BEGIN_SRC emacs-lisp
 (prefer-coding-system 'utf-8)
 #+END_SRC
-** Theme
-#+BEGIN_SRC emacs-lisp
-
-(load-theme 'zenburn t)
-
-#+END_SRC
 ** y/n instead of yes and no
 #+BEGIN_SRC emacs-lisp
 
@@ -94,15 +88,13 @@
   (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode)
   (show-paren-mode t)
   (setq show-paren-style 'mixed)
-  ;;(set-face-attribute 'show-paren-match-expression nil 
-  ;;                    :background "dark cyan")
+  
 
   (dolist (hook '(emacs-lisp-mode-hook
                  lisp-mode-hook scheme-mode-hook)))
   (add-hook 'smartparens-enabled-hook 'evil-smartparens-mode)
 
   (with-eval-after-load 'smartparens
-  
      (require 'smartparens-config))
 
 
@@ -131,6 +123,7 @@
 (global-set-key (kbd "M-x") #'helm-M-x)
 (global-set-key (kbd "C-x C-f")  #'helm-find-files)
 (global-set-key (kbd "C-x b") #'helm-mini)
+(global-set-key (kbd "M-s o") #'helm-occur)
 
 (helm-mode 1)
 
@@ -323,6 +316,13 @@
 #+BEGIN_SRC emacs-lisp
 
 (dumb-jump-mode 1)
+
+#+END_SRC 
+** Helm-ag
+configure helm-ag to use rippgrep
+#+BEGIN_SRC emacs-lisp
+(custom-set-variables
+ '(helm-ag-base-command "rg --no-heading"))
 
 #+END_SRC 
 ** GO
