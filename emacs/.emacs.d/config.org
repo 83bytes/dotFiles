@@ -325,6 +325,12 @@ configure helm-ag to use rippgrep
  '(helm-ag-base-command "rg --no-heading"))
 
 #+END_SRC 
+** Windmove 
+This thing lets you move between windows in a frame with meta+direction keys
+
+#+BEGIN_SRC emacs-lisp
+(windmove-default-keybindings 'meta)
+#+END_SRC
 ** GO
 #+BEGIN_SRC emacs-lisp
 ;; set GOPATH
