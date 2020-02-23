@@ -101,6 +101,13 @@
    #+END_SRC
 
 * Packages
+** Company Terraform
+#+BEGIN_SRC emacs-lisp
+
+(require 'company-terraform)
+(company-terraform-init)
+
+#+END_SRC
 ** Autocomplete
 
 #+BEGIN_SRC emacs-lisp
@@ -146,6 +153,7 @@
                           (sequence "|" "CANCEL(c)")
                           (sequence "|" "SKIP(k)")
                           (sequence "STARTED(s)" "|")
+                          (sequence "PAUSED(d)" "|")
                           (sequence "WAITING(w)" "|" )))
 
 ;; added color for custom states
@@ -154,6 +162,7 @@
               ("SKIP" :foreground "blue" :weight bold)
               ("DONE" :foreground "green" :weight bold)
               ("WAITING" :foreground "yellow")
+              ("PAUSED" :foreground "yellow")
               ("STARTED" :foreground "orange" :weight bold))))
 
 
@@ -174,22 +183,47 @@
    ("b" "Blog" entry (file+headline "~/work_space/.personal/todo/TODO.org" "BLOG")
         "* TODO %?\n  %i\n  %a")
    ("p" "Project" entry (file+headline "~/work_space/.personal/todo/TODO.org" "PROJECTS")
-        "* TODO %?\n  %i\n  %a")))
+        "* TODO %?\n  %i\n  %a")
+   ;;  multi layersed for reading
+   
+   ("r" "Reading")
+   ("rb" "Books" entry (file+headline "~/work_space/.personal/personal-reading/reading.org" "Non CS")
+        "* TODO %?\n  %i\n - Context :: %^{PROMPT|where did you come across this}")
+   ("rp" "Papers" entry (file+headline "~/work_space/.personal/personal-reading/reading.org" "Papers")
+        "* TODO %?\n  %i\n  %a")
+   ("rw" "Web" entry (file+headline "~/work_space/.personal/personal-reading/reading.org" "Web")
+        "* TODO %?  %i\n \n - Context :: %^{PROMPT|what does the article say}")
+   ("rm" "Misc" entry (file+headline "~/work_space/.personal/personal-reading/reading.org" "Kitchen Sink")
+        "* TODO %?\n  %i\n - Context :: %^{PROMPT|details of the entry}")
+
+
+   ;; multi layered for work
+   ("w" "Work @ Shaadi" entry (file+headline "~/work_space/shaadi/todo/todo.org" "Todo")
+        "* TODO %?   %^g \n  %i\n  %a")
+))
 
 
 ;; TODO file
-(global-set-key (kbd "<f12>") (lambda() (interactive)(find-file "/home/sohom/work_space/.personal/todo/TODO.org")))
+(global-set-key (kbd "<f12>") (lambda() (interactive)(find-file "/home/sohom/work_space/.personal/todo/dash.org")))
 
 
 ;; agenda file 
 (add-to-list 'org-agenda-files "/home/sohom/work_space/.personal/todo/TODO.org")
+(add-to-list 'org-agenda-files "/home/sohom/work_space/shaadi/todo/todo.org")
 (global-set-key "\C-ca" 'org-agenda)
+
 (setq org-agenda-use-time-grid t)
 
 ;; org refile
 (custom-set-variables '(org-refile-targets (quote (("todoArchive.org" :maxlevel . 1)))))
    #+END_SRC
 
+This is just a reference for multi-layered capture templates
+
+ (setq org-capture-templates `(("n" "notes")
+                            ("nh" "Home" entry (file+headline ,notes-path "home"))
+                            ("np" "Personal" entry (file+headline ,notes-path  "personal" ))
+                            ...
 
 *** ORG Capture Globally
 
@@ -345,6 +379,12 @@ This thing lets you move between windows in a frame with meta+direction keys
 ;; go autocomplete mode
 (with-eval-after-load 'go-mode
     (require 'go-autocomplete))
+
+#+END_SRC
+** Smoothscrolling
+#+BEGIN_SRC emacs-lisp
+(require 'smooth-scrolling)
+(smooth-scrolling-mode 1)
 
 #+END_SRC
 * MISC 
