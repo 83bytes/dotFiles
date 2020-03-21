@@ -11,3 +11,6 @@
 
 ;; this line loads the emacs config from the org mode file.
 (org-babel-load-file (expand-file-name "~/.emacs.d/config.org"))
+
+;; Add things here. Move them to config later on
+

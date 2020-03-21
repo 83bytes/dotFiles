@@ -19,6 +19,7 @@ alias ted="emacsclient -nw"
 # start a emacs buffer with a new frame. 
 alias ned="emacsclient -nc"
 
+alias ec="emacsclient -n"
 
 unset RPROMPT
 
