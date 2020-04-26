@@ -30,17 +30,17 @@
 ;; (xbindkey '("F8")' "amixer -D pulse sset Master 5%+")
 
 ;; AUDIO - thinkpad
-(xbindkey '("F1") "amixer -D pulse set Master 1+ toggle")
-(xbindkey '("F2")' "amixer -D pulse sset Master 5%-")
-(xbindkey '("F3")' "amixer -D pulse sset Master 5%+")
+(xbindkey '("Mod4" "F1") "amixer -D pulse set Master 1+ toggle")
+(xbindkey '("Mod4" "F2")' "amixer -D pulse sset Master 5%-")
+(xbindkey '("Mod4" "F3")' "amixer -D pulse sset Master 5%+")
 
 ;; BRIGHTNESS - HP
 ;; (xbindkey '("F3") "light -A 10")
 ;; (xbindkey '("F2") "light -U 10")
 
 ;; BRIGHTNESS - thinkpad (light is better than xorg-backlight)
-(xbindkey '("F6") "light -A 10")
-(xbindkey '("F5") "light -U 10")
+(xbindkey '("Mod4" "F6") "light -A 10")
+(xbindkey '("Mod4" "F5") "light -U 10")
 
 ;; PLAYER - HP
 ;; (xbindkey '("F9") "playerctl previous")
@@ -49,9 +49,9 @@
 
 
 ;; PLAYER - thinkpad
-(xbindkey '("F9") "playerctl previous -a")
-(xbindkey '("F10")' "playerctl play-pause -a")
-(xbindkey '("F11")' "playerctl next -a")
+(xbindkey '("Mod4" "F9") "playerctl previous -a")
+(xbindkey '("Mod4" "F10")' "playerctl play-pause -a")
+(xbindkey '("Mod4" "F11")' "playerctl next -a")
 
 ;; SCREENSHOT (click and move to sshots dir)
 (xbindkey '("Print") "scrot '%Y-%m-%d-%X_$wx$h.png' -e 'mv $f ~/Documents/sshots/'")
