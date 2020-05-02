@@ -363,7 +363,16 @@ configure helm-ag to use rippgrep
 This thing lets you move between windows in a frame with meta+direction keys
 
 #+BEGIN_SRC emacs-lisp
-(windmove-default-keybindings 'meta)
+;;(windmove-default-keybindings 'meta 'control)
+
+(global-set-key (kbd "C-M-<left>")  'windmove-left)
+(global-set-key (kbd "C-M-<right>") 'windmove-right)
+(global-set-key (kbd "C-M-<up>")    'windmove-up)
+(global-set-key (kbd "C-M-<down>")  'windmove-down)
+
+
+
+
 #+END_SRC
 ** GO
 #+BEGIN_SRC emacs-lisp
