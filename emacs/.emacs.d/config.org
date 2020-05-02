@@ -182,8 +182,6 @@
         "* TODO %?\n  %i\n  %a")
    ("b" "Blog" entry (file+headline "~/work_space/.personal/todo/TODO.org" "BLOG")
         "* TODO %?\n  %i\n  %a")
-   ("p" "Project" entry (file+headline "~/work_space/.personal/todo/TODO.org" "PROJECTS")
-        "* TODO %?\n  %i\n  %a")
    ;;  multi layersed for reading
    
    ("r" "Reading")
@@ -200,6 +198,8 @@
    ;; multi layered for work
    ("w" "Work @ Shaadi" entry (file+headline "~/work_space/shaadi/todo/todo.org" "Todo")
         "* TODO %?   %^g \n  %i\n  %a")
+   ("i" "Add File to Index" item (file+headline "~/work_space/.personal/knowledgebase/README.org" "Kitchen Sink")
+   "- %A :: %^{PROMPT|Desccribe what this is ?} ")
 ))
 
 
