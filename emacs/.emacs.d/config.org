@@ -67,19 +67,11 @@
 (setq tab-width 4)
    #+END_SRC
 
-** Highlight single line
-#+BEGIN_SRC emacs-lisp
-(global-hl-line-mode 1)
+** Scrolling
 
-(beacon-mode 1)
-(setq beacon-color "red")
-#+END_SRC
-** Golden ratio mode
-#+BEGIN_SRC emacs-lisp
-
-(golden-ratio-mode 1)
-
-#+END_SRC 
+#+begin_src emacs-lisp
+(setq scroll-step 1)
+#+end_src
 ** Parens
 
    #+BEGIN_SRC emacs-lisp
@@ -388,12 +380,6 @@ This thing lets you move between windows in a frame with meta+direction keys
 ;; go autocomplete mode
 (with-eval-after-load 'go-mode
     (require 'go-autocomplete))
-
-#+END_SRC
-** Smoothscrolling
-#+BEGIN_SRC emacs-lisp
-(require 'smooth-scrolling)
-(smooth-scrolling-mode 1)
 
 #+END_SRC
 * MISC 
