@@ -12,7 +12,19 @@
 ;; this line loads the emacs config from the org mode file.
 (org-babel-load-file (expand-file-name "~/.emacs.d/config.org"))
 
+(custom-set-variables
+ '(helm-follow-mode-persistent t))
 
+(define-key isearch-mode-map (kbd "M-s o") 'helm-swoop-from-isearch)
+
+;; (require 'deft)
+
+;; (setq deft-extensions '("txt" "tex" "org"))
+
+;; (setq deft-directory "~/.deft/")
+
+
+;; (global-set-key (kbd "C-f") 'deft)
 
 ;; Add things here. Move them to config later on
 
