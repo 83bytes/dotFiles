@@ -122,7 +122,9 @@
 (global-set-key (kbd "M-x") #'helm-M-x)
 (global-set-key (kbd "C-x C-f")  #'helm-find-files)
 (global-set-key (kbd "C-x b") #'helm-mini)
-(global-set-key (kbd "M-s o") #'helm-occur)
+(global-set-key (kbd "M-s o") #'helm-swoop)
+
+(define-key isearch-mode-map (kbd "M-s o") 'helm-swoop-from-isearch)
 
 (helm-mode 1)
 
@@ -382,6 +384,25 @@ This thing lets you move between windows in a frame with meta+direction keys
     (require 'go-autocomplete))
 
 #+END_SRC
+
+** Projectile Mode
+#+begin_src emacs-lisp
+
+(projectile-global-mode)
+
+(setq projectile-completion-system 'alien)
+
+(projectile-mode +1)
+
+(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
+(helm-projectile-on)
+
+(setq helm-follow-mode-persistent t)
+#+end_src
+
 * MISC 
 ** Always follow symlinks
 
