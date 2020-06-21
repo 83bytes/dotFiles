@@ -15,11 +15,11 @@ order += "volume master"
 # order += "ipv6"
 order += "disk /"
 # order += "run_watch DHCP"
-# order += "run_watch VPN"
+order += "run_watch VPN"
 order += "wireless _first_"
 order += "ethernet _first_"
 order += "battery 0"
-# order += "load"
+order += "load"
 order += "tztime local"
 
 volume master {
@@ -29,7 +29,6 @@ volume master {
 		mixer = "Master"
 		mixer_idx = 0
 }
-
 
 wireless _first_ {
 	format_up = "W: (%quality at %essid) %ip"
@@ -45,18 +44,16 @@ ethernet _first_ {
 battery 0 {
 	format = "%status %percentage %remaining"
 		status_chr = "⚡ CHR"
-		status_bat = "BAT"
+		status_bat = "🔋 BAT"
 		status_unk = "? UNK"
 		status_full = "☻ FULL"
 		low_threshold = 30
 		threshold_type = time
 }
-run_watch DHCP {
-	pidfile = "/var/run/dhclient*.pid"
-}
+
 
 run_watch VPN {
-	pidfile = "/var/run/vpnc/pid"
+	pidfile = "/var/run/vpnc.pid"
 }
 
 tztime local {
@@ -64,7 +61,7 @@ tztime local {
 }
 
 load {
-	format = "%1min"
+	format = "LOAD: %1min %5min"
 }
 
 disk "/" {
