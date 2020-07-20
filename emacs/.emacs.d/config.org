@@ -70,7 +70,21 @@
 ** Scrolling
 
 #+begin_src emacs-lisp
-(setq scroll-step 1)
+
+;; scroll one line at a time (less "jumpy" than defaults)
+
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+
+(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+
+(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+
+(setq scroll-step           1)
+
+(setq scroll-conservatively 10000)
+
+
+
 #+end_src
 ** Parens
 
@@ -171,31 +185,36 @@
 (setq org-default-notes-file (concat org-directory "/TODO.org"))
 (define-key global-map "\C-cc" 'org-capture)
 
+;; capture templates
 (setq org-capture-templates
- '(("t" "Todo" entry (file+headline "~/work_space/.personal/todo/TODO.org" "TASKS")
-        "* TODO %?\n  %i\n  %a")
-   ("b" "Blog" entry (file+headline "~/work_space/.personal/todo/TODO.org" "BLOG")
-        "* TODO %?\n  %i\n  %a")
-   ;;  multi layersed for reading
-   
-   ("r" "Reading")
-   ("rb" "Books" entry (file+headline "~/work_space/.personal/personal-reading/reading.org" "Non CS")
-        "* TODO %?\n  %i\n - Context :: %^{PROMPT|where did you come across this}")
-   ("rp" "Papers" entry (file+headline "~/work_space/.personal/personal-reading/reading.org" "Papers")
-        "* TODO %?\n  %i\n  %a")
-   ("rw" "Web" entry (file+headline "~/work_space/.personal/personal-reading/reading.org" "Web")
-        "* TODO %?  %i\n \n - Context :: %^{PROMPT|what does the article say}")
-   ("rm" "Misc" entry (file+headline "~/work_space/.personal/personal-reading/reading.org" "Kitchen Sink")
-        "* TODO %?\n  %i\n - Context :: %^{PROMPT|details of the entry}")
+      '(("t" "Todo" entry (file+headline "~/work_space/.personal/todo/TODO.org" "TASKS")
+         "* TODO %^{PROMPT|Title} \n*** Description %i\n %? \n*** Research & Notes \n*** Sub-Tasks [/]")
+        
+        ("b" "Blog" entry (file+headline "~/work_space/.personal/todo/TODO.org" "BLOG")
+         "* TODO %^{PROMPT|Title} \n*** Description %i\n %? \n*** Research & Notes \n*** Sub-Tasks [/]")
+        
+
+        ;;  multi layersed for reading
+        ("r" "Reading")
+        ("rb" "Books" entry (file+headline "~/work_space/.personal/personal-reading/reading.org" "Non CS")
+         "* TODO %?\n  %i\n - Context :: %^{PROMPT|where did you come across this}")
+        ("rp" "Papers" entry (file+headline "~/work_space/.personal/personal-reading/reading.org" "Papers")
+         "* TODO %?\n  %i\n  %a")
+        ("rw" "Web" entry (file+headline "~/work_space/.personal/personal-reading/reading.org" "Web")
+         "* TODO %?  %i\n \n - Context :: %^{PROMPT|what does the article say}")
+        ("rm" "Misc" entry (file+headline "~/work_space/.personal/personal-reading/reading.org" "Kitchen Sink")
+         "* TODO %?\n  %i\n - Context :: %^{PROMPT|details of the entry}")
 
 
-   ;; multi layered for work
-   ("w" "Work @ Shaadi" entry (file+headline "~/work_space/shaadi/todo/todo.org" "Todo")
-        "* TODO %?   %^g \n  %i\n  %a")
-   ("i" "Add File to Index" item (file+headline "~/work_space/.personal/knowledgebase/README.org" "Kitchen Sink")
-   "- %A :: %^{PROMPT|Desccribe what this is ?} ")
-))
-
+        
+        ;; multi layered for work
+        ("w" "Work @ Shaadi" entry (file+headline "~/work_space/shaadi/todo/todo.org" "Todo")
+         "* TODO %^{PROMPT|Title}n %^g \n*** Description %i\n %? \n*** Research & Notes \n*** Sub-Tasks [/]")
+        
+        ;; add file to knowledge index
+        ("i" "Add File to Index" item (file+headline "~/work_space/.personal/knowledgebase/README.org" "Kitchen Sink")
+         "- %A :: %^{PROMPT|Desccribe this entry for index :-> } ")
+        ))
 
 ;; TODO file
 (global-set-key (kbd "<f12>") (lambda() (interactive)(find-file "/home/sohom/work_space/.personal/todo/dash.org")))
