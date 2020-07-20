@@ -19,7 +19,7 @@
 (xbindkey '("Mod4" "p") "playerctl pause ; sudo systemctl suspend && i3lock -fc 000000")
 
 ;; terminal
-(xbindkey '("Mod4" "Return") "urxvt -e zsh")
+(xbindkey '("Mod4" "Return") "urxvt -e fish")
 
 ;; dmenu
 (xbindkey '("Mod4" "d") "dmenu_run")

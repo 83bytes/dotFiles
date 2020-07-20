@@ -5,5 +5,5 @@ function fish_prompt --description 'Write out the prompt'
     set suffix ' $'
  
 
-    echo -n -s (set_color yellow) (date +%H:%M:%S) (set_color blue) ' ' (whoami) @ (prompt_hostname) ' ' (set_color $color_cwd) (prompt_pwd) "$suffix "
+    echo -n -s (set_color yellow) (date +%H:%M:%S) ' ' (set_color $color_cwd) (prompt_pwd) "$suffix "
 end
