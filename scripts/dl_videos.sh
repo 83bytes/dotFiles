@@ -6,8 +6,8 @@
 # add --limit-rate 500K to limit to 500 Kbps
 
 if [[ $@ == *"playlist?"* ]]; then
-    youtube-dl -f best -cio '%(playlist_index)s-%(title)s.%(ext)s' $@ --download-archive youtubedl_archive
+    youtube-dl -f bestvideo+bestaudio --merge-output-format mkv -cio '%(playlist_index)s-%(title)s.%(ext)s' $@ --download-archive youtubedl_archive
 else
-    youtube-dl -f best -cio '%(title)s.%(ext)s' $@ 
+    youtube-dl -f bestvideo+bestaudio --merge-output-format mkv -cio '%(title)s.%(ext)s' $@ 
 fi
 
