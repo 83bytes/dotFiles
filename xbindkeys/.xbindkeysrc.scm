@@ -55,6 +55,7 @@
 
 ;; SCREENSHOT (click and move to sshots dir)
 (xbindkey '("Print") "scrot '%Y-%m-%d-%X_$wx$h.png' -e 'mv $f ~/Documents/sshots/'")
+(xbindkey '("release" "control" "Print") "scrot -s '%Y-%m-%d-%X_$wx$h.png' -e 'mv $f ~/Documents/sshots/'")
 
 ;; Org Global Capture (Ctrl + semicolon to launch emacs window for org-capture)
 (xbindkey '("Control" "Shift" "semicolon") "emacsclient -n -e '(make-capture-frame)'")
