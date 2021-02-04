@@ -79,8 +79,9 @@ alias gitp='GIT_SSH_COMMAND="ssh -i ~/.ssh/git_personal" git'
 
 # This is for GO-Lang.
 # Set up the system GOPATH
-export GOPATH=$HOME/work_space/go
+export GOPATH=$HOME/work_space/go/lib
 export PATH=$PATH:$GOPATH/bin
+export GOPATH=$GOPATH:$HOME/work_space/go/code
 
 rbenv() {
 	unset -f rbenv
@@ -88,4 +89,4 @@ rbenv() {
 	rbenv "$@"
 }
 
-
+[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
