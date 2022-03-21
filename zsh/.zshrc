@@ -79,9 +79,9 @@ pyenv() {
 
 # This is for GO-Lang.
 # Set up the system GOPATH
-export GOPATH=$HOME/wkspc/go/lib
+export GOPATH=$HOME/work_space/go/lib
 export PATH=$PATH:$GOPATH/bin
-export GOPATH=$GOPATH:$HOME/wkspc/go/code
+export GOPATH=$GOPATH:$HOME/work_space/go/code
 
 rbenv() {
 	unset -f rbenv
@@ -90,6 +90,3 @@ rbenv() {
 }
 
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
-source <(minikube completion zsh)
-source <(kind completion zsh)
-source <(helm completion zsh)
