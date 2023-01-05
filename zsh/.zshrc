@@ -27,7 +27,7 @@ unset RPROMPT
 typeset -U path
 
 # for thinkpad
-path=(/home/sohom/.cargo/bin /home/sohom/.rbenv/bin /home/sohom/.local/bin /home/sohom/.pyenv/bin /usr/lib/ccache/bin /usr/local/go/bin /usr/local/bin /usr/local/sbin /bin /usr/bin /sbin /usr/sbin /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl /home/sohom/anaconda3/bin/ /usr/games/)
+path=(/home/sohom/.rbenv/bin /home/sohom/.local/bin /home/sohom/.pyenv/bin /usr/lib/ccache/bin /usr/local/go/bin /usr/local/bin /usr/local/sbin /bin /usr/bin /sbin /usr/sbin /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl /home/sohom/anaconda3/bin/ /usr/games/)
 
 #path=(/home/sohom/.pyenv/bin /home/sohom/.gem/ruby/2.4.0/bin /usr/lib/ccache/bin /usr/local/bin /usr/local/sbin /bin /usr/bin /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl)
 
@@ -83,20 +83,23 @@ export GOPATH=$HOME/work_space/go/lib
 export PATH=$PATH:$GOPATH/bin
 export GOPATH=$GOPATH:$HOME/work_space/go/code
 
-rbenv() {
-	unset -f rbenv
-	eval "$(rbenv init -)"
-	rbenv "$@"
-}
+#rbenv() {
+#	unset -f rbenv
+#	eval "$(rbenv init -)"
+#	rbenv "$@"
+#}
 
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
 
-source $HOME/.cargo/env
-
-
-
-
 alias xtime="/bin/time --format  '%Uu %Ss %er %MkB %C'"
+
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+export PATH="$PATH:$GEM_HOME/bin"
+
+
+# completion for aws-cli
+complete -C /usr/local/bin/aws_completer aws
+#eval "$(~/.rbenv/bin/rbenv init - zsh)"
