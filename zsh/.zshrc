@@ -7,6 +7,8 @@
 
 # Source Prezto.
 export LC_ALL="en_US.UTF-8"
+export LANG="en_IN.UTF-8"
+
 
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -105,7 +107,11 @@ export LANG=en_IN.UTF-8
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-eval "$(~/.rbenv/bin/rbenv init - zsh)"
+if [ -d ~/.rbenv/bin ]; then 
+  eval "$(~/.rbenv/bin/rbenv init - zsh)"
+else
+  eval "$(rbenv init - zsh)"
+fi
 
 # Find and set branch name var if in git repository.
 function git_branch_name()
@@ -135,4 +141,3 @@ if [ -f '/home/sohom/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/sohom
 
 alias pssh="parallel-ssh"
 alias pscp="parallel-scp"
->>>>>>> 2fd4485f8a30dcc32eb0e88085b8526f99e0dffa
