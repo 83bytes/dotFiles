@@ -103,3 +103,6 @@ export PATH="$PATH:$GEM_HOME/bin"
 # completion for aws-cli
 complete -C /usr/local/bin/aws_completer aws
 #eval "$(~/.rbenv/bin/rbenv init - zsh)"
+#
+#
+export LANG=en_IN.UTF-8
