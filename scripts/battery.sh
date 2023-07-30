@@ -2,9 +2,9 @@
 
 # need to add some stuff so that cron can run this shit
 SHELL=/bin/bash
-PATH=/usr/lib/ccache/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+PATH=/bin/:/usr/lib/ccache/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
 export DISPLAY=:0
-export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1274040569/bus
 
 # gets the status and percentage
 function get_info {
@@ -15,6 +15,7 @@ function get_info {
 
 # alerts the user with the given alert
 function alert {
+	echo "herereeeee"
 	notify-send -u critical "$1" "$2"
 }
 
@@ -33,17 +34,21 @@ function logic {
 		alert "*** YOU MORON ***" "battery level is very low you !! system will SUSPEND NOW (in 5 secs)."
 		sleep 5s
 		i3lock -fc 000000
-		systemctl suspend 
-	elif [[ "$1" == "Discharging"  &&  $2 -lt 25 ]]
+		sudo systemctl suspend 
+	elif [[ "$1" == "Discharging"  &&  $2 -le 25 ]]
 	then
-		alert "*** CRITICAL ALERT ***" "BATTERY LEVEL LOWER THAN 25%"
-	elif [[ $1 == "Charging" && $2 -eq 98 ]]
+		alert "*** CRITICAL ALERT ***" "BATTERY LEVEL LOWER THAN 25%. Recharge NOW"
+		sleep 15s
+		alert "*** CRITICAL ALERT ***" "BATTERY LEVEL LOWER THAN 25%. Recharge NOW"
+	elif [[ $-1 == "Charging" && $2 -eq 98 ]]
 	then
 		alert "*** not-an-ALERT ***" "battery ALMOST fully CHARGED"
 	fi
 }
 
 
+
 get_info
+#alert "$stat" "$percentag"
 logic "$stat" "$percentag"
 

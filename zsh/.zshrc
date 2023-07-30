@@ -6,6 +6,10 @@
 #
 
 # Source Prezto.
+export LC_ALL="en_US.UTF-8"
+export LANG="en_IN.UTF-8"
+
+
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
@@ -19,6 +23,7 @@ alias ted="emacsclient -nw"
 # start a emacs buffer with a new frame. 
 alias ned="emacsclient -nc"
 
+alias ec="emacsclient -n"
 
 unset RPROMPT
 
@@ -26,9 +31,9 @@ unset RPROMPT
 typeset -U path
 
 # for thinkpad
-#path=(/home/sohomb/.pyenv/bin /home/sohomb/.gem/ruby/2.4.0/bin /usr/lib/ccache/bin /usr/local/bin /usr/local/sbin /bin /usr/bin /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl /home/sohomb/work_space/anaconda3/bin/)
+path=(/home/sohom/.rbenv/bin /home/sohom/.local/bin /home/sohom/.pyenv/bin /usr/lib/ccache/bin /usr/local/go/bin /usr/local/bin /usr/local/sbin /bin /usr/bin /sbin /usr/sbin /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl /home/sohom/anaconda3/bin/ /usr/games/ /home/sohom/.tfenv/bin)
 
-path=(/home/sohom/.pyenv/bin /home/sohom/.gem/ruby/2.4.0/bin /usr/lib/ccache/bin /usr/local/bin /usr/local/sbin /bin /usr/bin /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl /home/sohom/work_space/anaconda3/bin/)
+#path=(/home/sohom/.pyenv/bin /home/sohom/.gem/ruby/2.4.0/bin /usr/lib/ccache/bin /usr/local/bin /usr/local/sbin /bin /usr/bin /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl)
 
 
 # nvm  (lazy load nvm)
@@ -54,12 +59,6 @@ npm() {
 }
 
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/sohomb/google-cloud-sdk/path.zsh.inc' ]; then . '/home/sohom/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/sohomb/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/sohom/google-cloud-sdk/completion.zsh.inc'; fi
-
 pyenv() {
 	unset -f pyenv
 	eval "$(pyenv init -)"
@@ -72,6 +71,73 @@ pyenv() {
 
 # This is for different ssh keys for github
 
-alias gits='GIT_SSH_COMMAND="ssh -i ~/.ssh/git_people" git'
-alias gitp='GIT_SSH_COMMAND="ssh -i ~/.ssh/git_personal" git'
+# alias gits='GIT_SSH_COMMAND="ssh -i ~/.ssh/git_people" git'
+# alias gitp='GIT_SSH_COMMAND="ssh -i ~/.ssh/git_personal" git'
 
+
+# This is for GO-Lang.
+# Set up the system GOPATH
+export GOPATH=$HOME/work_space/go/lib
+export PATH=$PATH:$GOPATH/bin
+export GOPATH=$GOPATH:$HOME/work_space/go/code
+
+#rbenv() {
+#	unset -f rbenv
+	eval "$(rbenv init -)"
+#	rbenv "$@"
+#}
+
+[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform
+
+alias xtime="/bin/time --format  '%Uu %Ss %er %MkB %C'"
+
+#export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+#export PATH="$PATH:$GEM_HOME/bin"
+
+
+# completion for aws-cli
+complete -C /usr/local/bin/aws_completer aws
+#eval "$(~/.rbenv/bin/rbenv init - zsh)"
+
+export LANG=en_IN.UTF-8
+
+
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+if [ -d ~/.rbenv/bin ]; then 
+  eval "$(~/.rbenv/bin/rbenv init - zsh)"
+else
+  eval "$(rbenv init - zsh)"
+fi
+
+# Find and set branch name var if in git repository.
+function git_branch_name()
+{
+  branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
+  if [[ $branch == "" ]];
+  then
+    :
+  else
+    echo '- ('$branch')'
+  fi
+}
+
+# Enable substitution in the prompt.
+setopt prompt_subst
+
+# Config for prompt. PS1 synonym.
+RPROMPT='$(git_branch_name)'
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/sohom/google-cloud-sdk/path.zsh.inc' ]; then . '/home/sohom/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/sohom/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/sohom/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+alias pssh="parallel-ssh"
+alias pscp="parallel-scp"

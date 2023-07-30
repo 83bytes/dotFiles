@@ -11,10 +11,10 @@ URxvt*scrollWithBuffer:	true
 URxvt*scrollTtyKeypress:	true
 
 ! DejaVu Sana Mono Font
-URxvt*font: xft:DejaVu Sans Mono:style=Book:pixelsize=14
-URxvt*boldFont: xft:DejaVu Sans Mono:style=bold:pixelsize=14
-URxvt*italicFont: xft:DejaVu Sans Mono:style=Oblique:pixelsize=14
-URxvt*boldItalicFont: xft:DejaVu Sans Mono:style=BoldOblique:pixelsize=14
+URxvt*font: xft:DejaVu Sans Mono:style=Book:pixelsize=15
+URxvt*boldFont: xft:DejaVu Sans Mono:style=bold:pixelsize=15
+URxvt*italicFont: xft:DejaVu Sans Mono:style=Oblique:pixelsize=15
+URxvt*boldItalicFont: xft:DejaVu Sans Mono:style=BoldOblique:pixelsize=15
 URxvt.letterSpace: 0
 
 

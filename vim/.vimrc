@@ -20,25 +20,25 @@ set nocompatible
 
 " to set number and relative number
 set number
-set relativenumber
+" set relativenumber
 
 " set 'jk' as esc button
 inoremap jk <esc>
 
 " NERDTree config
-map <f5> :NERDTreeToggle<CR>
+" map <f5> :NERDTreeToggle<CR>
 
 " start NERDTree on vim startup
 " autocmd vimenter * NERDTree
 
 " BEGINING VIM-PLUG calls
 
-call plug#begin('~/.vim/plugged')
+"call plug#begin('~/.vim/plugged')
 
-Plug 'vim-airline/vim-airline' " vim air-line
+"Plug 'vim-airline/vim-airline' " vim air-line
 
-Plug 'scrooloose/nerdtree'     " vim NERDTree
+"Plug 'scrooloose/nerdtree'     " vim NERDTree
 
-Plug 'bling/vim-bufferline'    " vim bufferline
+"Plug 'bling/vim-bufferline'    " vim bufferline
 
-call plug#end() 
+"call plug#end() 

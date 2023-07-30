@@ -1,9 +1,7 @@
 * Gui modifications
-** Theme
+** Encoding
 #+BEGIN_SRC emacs-lisp
-
-(load-theme 'zenburn t)
-
+(prefer-coding-system 'utf-8)
 #+END_SRC
 ** y/n instead of yes and no
 #+BEGIN_SRC emacs-lisp
@@ -69,6 +67,25 @@
 (setq tab-width 4)
    #+END_SRC
 
+** Scrolling
+
+#+begin_src emacs-lisp
+
+;; scroll one line at a time (less "jumpy" than defaults)
+
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+
+(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+
+(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+
+(setq scroll-step           1)
+
+(setq scroll-conservatively 10000)
+
+
+
+#+end_src
 ** Parens
 
    #+BEGIN_SRC emacs-lisp
@@ -77,21 +94,33 @@
   (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode)
   (show-paren-mode t)
   (setq show-paren-style 'mixed)
-  ;;(set-face-attribute 'show-paren-match-expression nil 
-  ;;                    :background "dark cyan")
+  
 
   (dolist (hook '(emacs-lisp-mode-hook
                  lisp-mode-hook scheme-mode-hook)))
   (add-hook 'smartparens-enabled-hook 'evil-smartparens-mode)
 
   (with-eval-after-load 'smartparens
-  
      (require 'smartparens-config))
 
 
    #+END_SRC
 
 * Packages
+** Company Terraform
+#+BEGIN_SRC emacs-lisp
+
+(require 'company-terraform)
+(company-terraform-init)
+
+#+END_SRC
+** Autocomplete
+
+#+BEGIN_SRC emacs-lisp
+
+(auto-complete-mode 1)
+
+#+END_SRC
 ** HELM
 
    #+BEGIN_SRC emacs-lisp
@@ -107,6 +136,9 @@
 (global-set-key (kbd "M-x") #'helm-M-x)
 (global-set-key (kbd "C-x C-f")  #'helm-find-files)
 (global-set-key (kbd "C-x b") #'helm-mini)
+(global-set-key (kbd "M-s o") #'helm-swoop)
+
+(define-key isearch-mode-map (kbd "M-s o") 'helm-swoop-from-isearch)
 
 (helm-mode 1)
 
@@ -129,6 +161,7 @@
                           (sequence "|" "CANCEL(c)")
                           (sequence "|" "SKIP(k)")
                           (sequence "STARTED(s)" "|")
+                          (sequence "PAUSED(d)" "|")
                           (sequence "WAITING(w)" "|" )))
 
 ;; added color for custom states
@@ -137,6 +170,7 @@
               ("SKIP" :foreground "blue" :weight bold)
               ("DONE" :foreground "green" :weight bold)
               ("WAITING" :foreground "yellow")
+              ("PAUSED" :foreground "yellow")
               ("STARTED" :foreground "orange" :weight bold))))
 
 
@@ -151,28 +185,58 @@
 (setq org-default-notes-file (concat org-directory "/TODO.org"))
 (define-key global-map "\C-cc" 'org-capture)
 
+;; capture templates
 (setq org-capture-templates
- '(("t" "Todo" entry (file+headline "~/work_space/.personal/todo/TODO.org" "TASKS")
-        "* TODO %?\n  %i\n  %a")
-   ("b" "Blog" entry (file+headline "~/work_space/.personal/todo/TODO.org" "BLOG")
-        "* TODO %?\n  %i\n  %a")
-   ("p" "Project" entry (file+headline "~/work_space/.personal/todo/TODO.org" "PROJECTS")
-        "* TODO %?\n  %i\n  %a")))
+      '(("t" "Todo" entry (file+headline "~/work_space/.personal/todo/TODO.org" "TASKS")
+         "* TODO %^{PROMPT|Title} \n*** Description %i\n %? \n*** Research & Notes \n*** Sub-Tasks [/]")
+        
+        ("b" "Blog" entry (file+headline "~/work_space/.personal/todo/TODO.org" "BLOG")
+         "* TODO %^{PROMPT|Title} \n*** Description %i\n %? \n*** Research & Notes \n*** Sub-Tasks [/]")
+        
 
+        ;;  multi layersed for reading
+        ("r" "Reading")
+        ("rb" "Books" entry (file+headline "~/work_space/.personal/personal-reading/reading.org" "Non CS")
+         "* TODO %?\n  %i\n - Context :: %^{PROMPT|where did you come across this}")
+        ("rp" "Papers" entry (file+headline "~/work_space/.personal/personal-reading/reading.org" "Papers")
+         "* TODO %?\n  %i\n  %a")
+        ("rw" "Web" entry (file+headline "~/work_space/.personal/personal-reading/reading.org" "Web")
+         "* TODO %?  %i\n \n - Context :: %^{PROMPT|what does the article say}")
+        ("rm" "Misc" entry (file+headline "~/work_space/.personal/personal-reading/reading.org" "Kitchen Sink")
+         "* TODO %?\n  %i\n - Context :: %^{PROMPT|details of the entry}")
+
+
+        
+        ;; multi layered for work
+        ("w" "Work @ Shaadi" entry (file+headline "~/work_space/shaadi/todo/todo.org" "Todo")
+         "* TODO %^{PROMPT|Title}n %^g \n*** Description %i\n %? \n*** Research & Notes \n*** Sub-Tasks [/]")
+        
+        ;; add file to knowledge index
+        ("i" "Add File to Index" item (file+headline "~/work_space/.personal/knowledgebase/README.org" "Kitchen Sink")
+         "- %A :: %^{PROMPT|Desccribe this entry for index :-> } ")
+        ))
 
 ;; TODO file
-(global-set-key (kbd "<f6>") (lambda() (interactive)(find-file "/home/sohom/work_space/.personal/todo/TODO.org")))
+(global-set-key (kbd "<f12>") (lambda() (interactive)(find-file "/home/sohom/work_space/.personal/todo/dash.org")))
 
 
 ;; agenda file 
 (add-to-list 'org-agenda-files "/home/sohom/work_space/.personal/todo/TODO.org")
+(add-to-list 'org-agenda-files "/home/sohom/work_space/shaadi/todo/todo.org")
 (global-set-key "\C-ca" 'org-agenda)
+
 (setq org-agenda-use-time-grid t)
 
 ;; org refile
 (custom-set-variables '(org-refile-targets (quote (("todoArchive.org" :maxlevel . 1)))))
    #+END_SRC
 
+This is just a reference for multi-layered capture templates
+
+ (setq org-capture-templates `(("n" "notes")
+                            ("nh" "Home" entry (file+headline ,notes-path "home"))
+                            ("np" "Personal" entry (file+headline ,notes-path  "personal" ))
+                            ...
 
 *** ORG Capture Globally
 
@@ -286,7 +350,107 @@
 
    #+END_SRC
 
+** YAML
+#+BEGIN_SRC emacs-lisp
+
+(use-package yaml-mode
+     :ensure t)
+
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+
+#+END_SRC
+** Dumb-Jump
+#+BEGIN_SRC emacs-lisp
+
+(dumb-jump-mode 1)
+
+#+END_SRC 
+** Helm-ag
+configure helm-ag to use rippgrep
+#+BEGIN_SRC emacs-lisp
+  ;; (custom-set-variables
+   ;; '(helm-ag-base-command "rg --no-heading"))
+
+#+END_SRC 
+** Windmove 
+This thing lets you move between windows in a frame with meta+direction keys
+
+#+BEGIN_SRC emacs-lisp
+;;(windmove-default-keybindings 'meta 'control)
+
+(global-set-key (kbd "C-M-<left>")  'windmove-left)
+(global-set-key (kbd "C-M-<right>") 'windmove-right)
+(global-set-key (kbd "C-M-<up>")    'windmove-up)
+(global-set-key (kbd "C-M-<down>")  'windmove-down)
+
+
+
+
+#+END_SRC
+** GO
+#+BEGIN_SRC emacs-lisp
+  ;; set GOPATH
+  (setenv "GOPATH" "/home/sohomb/work_space/go/lib/:/home/sohomb/work_space/go/code/")
+
+  ;; set exec path to find go binaries
+  (add-to-list 'exec-path "/home/sohomb/work_space/go/lib/bin")
+
+  ;; add gofmt hook
+  (add-hook 'before-save-hook 'gofmt-before-save)
+
+  ;; go autocomplete mode
+  (with-eval-after-load 'go-mode
+      (require 'go-autocomplete))
+
+  (require 'go-autocomplete)
+
+  (require 'auto-complete-config)
+
+  (ac-config-default)
+
+#+END_SRC
+
+** Projectile Mode
+#+begin_src emacs-lisp
+
+(projectile-global-mode)
+
+(setq projectile-completion-system 'alien)
+
+(projectile-mode +1)
+
+(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
+(helm-projectile-on)
+
+(setq helm-follow-mode-persistent t)
+#+end_src
+
 * MISC 
+** Always follow symlinks
+
+#+BEGIN_SRC emacs-lisp
+(setq vc-follow-symlinks t)
+
+#+END_SRC
+** Auto revert files on change
+#+BEGIN_SRC emacs-lisp
+(global-auto-revert-mode t)
+
+#+END_SRC
+** Enable narrowing of buffers 
+#+BEGIN_SRC emacs-lisp
+ (put 'narrow-to-region 'disabled nil) 
+
+#+END_SRC
+** Use shift+arrow to change windows
+#+BEGIN_SRC emacs-lisp
+;;(when (fboundp 'windmove-default-keybindings)
+;;  (windmove-default-keybindings))
+
+#+END_SRC 
 ** backup files 
 
    #+BEGIN_SRC emacs-lisp
@@ -297,22 +461,15 @@
    #+END_SRC 
   
 * EVIL 
+END PART
+enable  evil package
+this file needs to go in the END
+so that evil can DETECT all other packages
+and load key-bindings accordingly :-)
+
   #+BEGIN_SRC emacs-lisp
-;; END PART
-;; enable  evil package
-;; this file needs to go in the END
-;; so that evil can DETECT all other packages
-;; and load key-bindings accordingly :-)
 (require 'evil)
 (evil-mode 1)
+    #+END_SRC
 
-(evil-define-key 'normal smartparens-mode-map
-"l" 'sp-forward-sexp
-"h" 'sp-backward-sexp
-"L" 'sp-up-sexp
-"H" 'sp-backward-up-sexp
-"<" 'sp-backward-slurp-sexp
-">" 'sp-forward-slurp-sexp
-"}" 'sp-backward-barf-sexp
-"{" 'sp-forward-barf-sexp)
-  #+END_SRC
+
