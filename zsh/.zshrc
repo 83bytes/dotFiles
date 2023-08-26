@@ -31,7 +31,7 @@ unset RPROMPT
 typeset -U path
 
 # for thinkpad
-path=(/home/sohom/.rbenv/bin /home/sohom/.local/bin /home/sohom/.pyenv/bin /usr/lib/ccache/bin /usr/local/go/bin /usr/local/bin /usr/local/sbin /bin /usr/bin /sbin /usr/sbin /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl /home/sohom/anaconda3/bin/ /usr/games/ /home/sohom/.tfenv/bin)
+path=(/home/sohom/bin /home/sohom/.rbenv/bin /home/sohom/.local/bin /home/sohom/.pyenv/bin /usr/lib/ccache/bin /usr/local/go/bin /usr/local/bin /usr/local/sbin /bin /usr/bin /sbin /usr/sbin /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl /home/sohom/anaconda3/bin/ /usr/games/ /home/sohom/.tfenv/bin)
 
 #path=(/home/sohom/.pyenv/bin /home/sohom/.gem/ruby/2.4.0/bin /usr/lib/ccache/bin /usr/local/bin /usr/local/sbin /bin /usr/bin /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl)
 
@@ -141,3 +141,12 @@ if [ -f '/home/sohom/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/sohom
 
 alias pssh="parallel-ssh"
 alias pscp="parallel-scp"
+alias l9cli-profile='source ~/.l9cli/profiles/$(ls -1 ~/.l9cli/profiles | fzf)'
+
+alias aws-profile='export AWS_PROFILE=$(sed -n "s/\[profile \(.*\)\]/\1/gp" ~/.aws/config | fzf)'
+
+
+
+
+
+
