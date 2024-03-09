@@ -49,20 +49,14 @@ function check_for_nas {
 
 ## src dst
 function dry_run {
-     if [ "$3"  != "--no-dry-run" ];
-     then
-          echo "DRY RUN:  src: $1  dst: $2"
-          rsync  -rthai --update --info=progress2 --progress -n "$1" "$2"
-     elif [ "$3" == "--no-dry-run" ];
-     then
-          echo "NO DRY RUN:  src: $1  dst: $2"
-          rsync  -rthai --update --info=progress2 --progress "$1" "$2"
-     fi
+     echo "DRY RUN:  src: $1  dst: $2"
+     rsync  -rthai --update --info=progress2 --progress -n "$1" "$2"
 }
 
 function do_it {
-     dry_run "$1" "$2" --no-dry-run
+    echo "NO DRY RUN:  src: $1  dst: $2"
+    rsync  -rthai --update --info=progress2 --progress "$1" "$2"
 }
 
 check_for_nas
-$1 "$2" "$3" ""
+$1 $2 $3
