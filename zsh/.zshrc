@@ -15,6 +15,46 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 unsetopt correct
 
+
+##########
+# HISTORY
+##########
+
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=50000
+SAVEHIST=50000
+
+# Immediately append to history file:
+setopt INC_APPEND_HISTORY
+
+# Record timestamp in history:
+setopt EXTENDED_HISTORY
+
+# Expire duplicate entries first when trimming history:
+setopt HIST_EXPIRE_DUPS_FIRST
+
+# Dont record an entry that was just recorded again:
+setopt HIST_IGNORE_DUPS
+
+# Delete old recorded entry if new entry is a duplicate:
+setopt HIST_IGNORE_ALL_DUPS
+
+# Do not display a line previously found:
+setopt HIST_FIND_NO_DUPS
+
+# Dont record an entry starting with a space:
+setopt HIST_IGNORE_SPACE
+
+# Dont write duplicate entries in the history file:
+setopt HIST_SAVE_NO_DUPS
+
+# Share history between all sessions:
+setopt SHARE_HISTORY
+
+# Execute commands using history (e.g.: using !$) immediatel:
+unsetopt HIST_VERIFY
+
+
 alias ls="ls --color --classify"
 
 # start a emacs thingy in the terminal (for very very small files)
@@ -144,9 +184,19 @@ alias pscp="parallel-scp"
 alias l9cli-profile='source ~/.l9cli/profiles/$(ls -1 ~/.l9cli/profiles | fzf)'
 
 alias aws-profile='export AWS_PROFILE=$(sed -n "s/\[profile \(.*\)\]/\1/gp" ~/.aws/config | fzf)'
+alias bat=batcat
 
 
+if [[ -s "/home/sohom/.l9/l9_alias" ]]; then
+  source "/home/sohom/.l9/l9_alias"
+fi
 
+# rg to read into symlinks and ignore vcs things
+# ideal for usage in shipment because we use heavy symlinking AND gitignores
+alias rg="rg --no-ignore-vcs --follow"
+alias kc="kubectx"
+alias k="kubectl"
 
-
-
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
