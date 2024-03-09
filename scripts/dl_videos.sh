@@ -7,8 +7,8 @@
 
 if [[ $@ == *"playlist?"* ]]; then
     echo "$@" > ./playlist_url
-    youtube-dl -f bestvideo+bestaudio --merge-output-format mkv -cio '%(playlist_index)s-%(title)s.%(ext)s' "$@" --download-archive youtubedl_archive
+    yt-dlp -f bestvideo+bestaudio --merge-output-format mkv -cio '%(playlist_index)s-%(title)s.%(ext)s' "$@" --download-archive youtubedl_archive
 else
-    youtube-dl -f bestvideo+bestaudio --merge-output-format mkv -cio '%(title)s.%(ext)s' "$@"
+    yt-dlp -f bestvideo+bestaudio --merge-output-format mkv -cio '%(title)s.%(ext)s' "$@"
 fi
 
