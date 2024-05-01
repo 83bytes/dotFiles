@@ -123,7 +123,7 @@ export GOPATH=$GOPATH:$HOME/work_space/go/code
 
 #rbenv() {
 #	unset -f rbenv
-	eval "$(rbenv init -)"
+#	eval "$(rbenv init -)"
 #	rbenv "$@"
 #}
 
@@ -147,11 +147,11 @@ export LANG=en_IN.UTF-8
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-if [ -d ~/.rbenv/bin ]; then 
-  eval "$(~/.rbenv/bin/rbenv init - zsh)"
-else
-  eval "$(rbenv init - zsh)"
-fi
+#if [ -d ~/.rbenv/bin ]; then 
+#  eval "$(~/.rbenv/bin/rbenv init - zsh)"
+#else
+#  eval "$(rbenv init - zsh)"
+#fi
 
 # Find and set branch name var if in git repository.
 function git_branch_name()
