@@ -71,7 +71,7 @@ unset RPROMPT
 typeset -U path
 
 # for thinkpad
-path=(/home/sohom/bin /home/sohom/.rbenv/bin /home/sohom/.local/bin /home/sohom/.pyenv/bin /usr/lib/ccache/bin /usr/local/go/bin /usr/local/bin /usr/local/sbin /bin /usr/bin /sbin /usr/sbin /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl /home/sohom/anaconda3/bin/ /usr/games/ /home/sohom/.tfenv/bin)
+path=(/home/sohom/bin /home/sohom/.rbenv/bin /home/sohom/.local/bin /home/sohom/.pyenv/bin /usr/lib/ccache/bin /usr/local/go/bin /usr/local/bin /usr/local/sbin /bin /usr/bin /sbin /usr/sbin /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl /home/sohom/anaconda3/bin/ /usr/games/ /home/sohom/.tfenv/bin /home/sohom/.cargo/bin)
 
 #path=(/home/sohom/.pyenv/bin /home/sohom/.gem/ruby/2.4.0/bin /usr/lib/ccache/bin /usr/local/bin /usr/local/sbin /bin /usr/bin /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl)
 
@@ -169,7 +169,7 @@ function git_branch_name()
 setopt prompt_subst
 
 # Config for prompt. PS1 synonym.
-RPROMPT='$(git_branch_name)'
+RPROMPT='$(git_branch_name) $(date +%T)'
 
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -196,6 +196,7 @@ fi
 alias rg="rg --no-ignore-vcs --follow"
 alias kc="kubectx"
 alias k="kubectl"
+alias less="less -R"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
