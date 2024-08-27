@@ -169,7 +169,7 @@ function git_branch_name()
 setopt prompt_subst
 
 # Config for prompt. PS1 synonym.
-RPROMPT='$(git_branch_name)'
+RPROMPT='$(git_branch_name) $(date +%T)'
 
 
 # The next line updates PATH for the Google Cloud SDK.
