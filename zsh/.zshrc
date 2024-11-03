@@ -14,6 +14,8 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 unsetopt correct
 
+## Disable autocd
+unsetopt autocd
 
 ##########
 # HISTORY
@@ -69,7 +71,8 @@ unset RPROMPT
 
 typeset -U path
 
-path=(/opt/homebrew/bin $HOME/bin $HOME/.rbenv/bin $HOME/.local/bin /usr/lib/ccache/bin /usr/local/go/bin /usr/local/bin /usr/local/sbin /bin /usr/bin /sbin /usr/sbin /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl $HOME/anaconda3/bin/ /usr/games/ $HOME/.tfenv/bin $HOME/.cargo/bin)
+
+path=($HOME/zig/zig-nightly-latest /opt/homebrew/bin $HOME/bin $HOME/.rbenv/bin $HOME/.local/bin /usr/lib/ccache/bin /usr/local/go/bin /usr/local/bin /usr/local/sbin /bin /usr/bin /sbin /usr/sbin /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl $HOME/anaconda3/bin/ /usr/games/ $HOME/.tfenv/bin $HOME/.cargo/bin)
 
 
 # PYENV
@@ -163,5 +166,5 @@ alias less="less -R"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
