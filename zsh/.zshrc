@@ -9,6 +9,9 @@
 export LC_ALL="en_US.UTF-8"
 export LANG="en_IN.UTF-8"
 
+if [ -n "${ZSH_DEBUGRC+1}" ]; then
+	    zmodload zsh/zprof
+fi
 
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -204,3 +207,9 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+
+if [ -n "${ZSH_DEBUGRC+1}" ]; then
+	    zprof
+fi
