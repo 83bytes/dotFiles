@@ -76,8 +76,6 @@ typeset -U path
 # for thinkpad
 path=(/home/sohom/bin /home/sohom/.rbenv/bin /home/sohom/.local/bin /home/sohom/.pyenv/bin /usr/lib/ccache/bin /usr/local/go/bin /usr/local/bin /usr/local/sbin /bin /usr/bin /sbin /usr/sbin /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl /home/sohom/anaconda3/bin/ /usr/games/ /home/sohom/.tfenv/bin /home/sohom/.cargo/bin /home/sohom/zig/zig-nightly-latest/ /home/sohom/zig/bin/)
 
-#path=(/home/sohom/.pyenv/bin /home/sohom/.gem/ruby/2.4.0/bin /usr/lib/ccache/bin /usr/local/bin /usr/local/sbin /bin /usr/bin /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl)
-
 
 # nvm  (lazy load nvm)
 nvm() {
@@ -113,12 +111,6 @@ pyenv() {
 #if command -v pyenv 1>/dev/null 2>&1; then eval "$(pyenv init -)"; fi
 
 
-# This is for different ssh keys for github
-
-# alias gits='GIT_SSH_COMMAND="ssh -i ~/.ssh/git_people" git'
-# alias gitp='GIT_SSH_COMMAND="ssh -i ~/.ssh/git_personal" git'
-
-
 # This is for GO-Lang.
 # Set up the system GOPATH
 export GOPATH=$HOME/work_space/go/lib
@@ -140,24 +132,16 @@ complete -o nospace -C /usr/bin/terraform terraform
 
 alias xtime="/bin/time --format  '%Uu %Ss %er %MkB %C'"
 
-#export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-#export PATH="$PATH:$GEM_HOME/bin"
 
 
 # completion for aws-cli
 complete -C /usr/local/bin/aws_completer aws
-#eval "$(~/.rbenv/bin/rbenv init - zsh)"
 
 export LANG=en_IN.UTF-8
 
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-#if [ -d ~/.rbenv/bin ]; then 
-#  eval "$(~/.rbenv/bin/rbenv init - zsh)"
-#else
-#  eval "$(rbenv init - zsh)"
-#fi
 
 # Find and set branch name var if in git repository.
 function git_branch_name()
@@ -187,15 +171,8 @@ if [ -f '/home/sohom/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/sohom
 
 alias pssh="parallel-ssh"
 alias pscp="parallel-scp"
-alias l9cli-profile='source ~/.l9cli/profiles/$(ls -1 ~/.l9cli/profiles | fzf)'
-
-alias aws-profile='export AWS_PROFILE=$(sed -n "s/\[profile \(.*\)\]/\1/gp" ~/.aws/config | fzf)'
 alias bat=batcat
 
-
-if [[ -s "/home/sohom/.l9/l9_alias" ]]; then
-  source "/home/sohom/.l9/l9_alias"
-fi
 
 # rg to read into symlinks and ignore vcs things
 # ideal for usage in shipment because we use heavy symlinking AND gitignores
