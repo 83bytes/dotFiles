@@ -124,6 +124,8 @@ pyenv() {
 export GOPATH=$HOME/work_space/go/lib
 export PATH=$PATH:$GOPATH/bin
 export GOPATH=$GOPATH:$HOME/work_space/go/code
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+export PATH=$JAVA_HOME/bin:$PATH
 
 #rbenv() {
 #	unset -f rbenv
@@ -202,12 +204,20 @@ alias kc="kubectx"
 alias k="kubectl"
 alias less="less -R"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+export PNPM_HOME="/home/sohom/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 
 if [ -n "${ZSH_DEBUGRC+1}" ]; then
