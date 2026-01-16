@@ -10,7 +10,7 @@ export LC_ALL="en_US.UTF-8"
 export LANG="en_IN.UTF-8"
 
 if [ -n "${ZSH_DEBUGRC+1}" ]; then
-	    zmodload zsh/zprof
+    zmodload zsh/zprof
 fi
 
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -57,8 +57,14 @@ setopt SHARE_HISTORY
 # Execute commands using history (e.g.: using !$) immediatel:
 unsetopt HIST_VERIFY
 
-
-alias ls="ls --color --classify"
+# Cross-platform ls alias
+if [[ $(uname) == "Darwin" ]]; then
+  # macOS (BSD ls)
+  alias ls="ls -G"
+else
+  # Linux (GNU ls)
+  alias ls="ls --color --classify"
+fi
 
 # start a emacs thingy in the terminal (for very very small files)
 alias ted="emacsclient -nw"
@@ -73,8 +79,34 @@ unset RPROMPT
 
 typeset -U path
 
-# for thinkpad
-path=(/home/sohom/.opencode/bin /home/sohom/bin /home/sohom/.rbenv/bin /home/sohom/.local/bin /home/sohom/.pyenv/bin /usr/lib/ccache/bin /usr/local/go/bin /usr/local/bin /usr/local/sbin /bin /usr/bin /sbin /usr/sbin /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl /home/sohom/anaconda3/bin/ /usr/games/ /home/sohom/.tfenv/bin /home/sohom/.cargo/bin /home/sohom/zig/zig-nightly-latest/ /home/sohom/zig/bin/ /opt/nvim-linux-x86_64/bin)
+# Common paths
+path=(
+  $HOME/.opencode/bin
+  $HOME/bin
+  $HOME/.rbenv/bin
+  $HOME/.local/bin
+  $HOME/.pyenv/bin
+  /usr/lib/ccache/bin
+  /usr/local/go/bin
+  /usr/local/bin
+  /usr/local/sbin
+  /bin
+  /usr/bin
+  /sbin
+  /usr/sbin
+  /opt/homebrew/bin        # macOS Homebrew
+  /usr/lib/jvm/default/bin
+  /usr/bin/site_perl
+  /usr/bin/vendor_perl
+  /usr/bin/core_perl
+  $HOME/anaconda3/bin/
+  /usr/games/
+  $HOME/.tfenv/bin
+  $HOME/.cargo/bin
+  $HOME/zig/zig-nightly-latest/
+  $HOME/zig/bin/
+  /opt/nvim-linux-x86_64/bin
+)
 
 
 # nvm  (lazy load nvm)
@@ -102,9 +134,9 @@ npm() {
 
 
 pyenv() {
-	unset -f pyenv
-	eval "$(pyenv init -)"
-	pyenv "$@"
+    unset -f pyenv
+    eval "$(pyenv init -)"
+    pyenv "$@"
 }
 #
 #
@@ -116,8 +148,12 @@ pyenv() {
 export GOPATH=$HOME/work_space/go/lib
 export PATH=$PATH:$GOPATH/bin
 export GOPATH=$GOPATH:$HOME/work_space/go/code
-export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
-export PATH=$JAVA_HOME/bin:$PATH
+
+# Java Home (Linux specific mostly, but harmless if dir missing)
+if [ -d "/usr/lib/jvm/java-21-openjdk-amd64" ]; then
+    export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+    export PATH=$JAVA_HOME/bin:$PATH
+fi
 
 #rbenv() {
 #	unset -f rbenv
@@ -128,14 +164,19 @@ export PATH=$JAVA_HOME/bin:$PATH
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/bin/terraform terraform
+
+if [ -x "/usr/bin/terraform" ]; then
+    complete -o nospace -C /usr/bin/terraform terraform
+fi
 
 alias xtime="/bin/time --format  '%Uu %Ss %er %MkB %C'"
 
 
 
 # completion for aws-cli
-complete -C /usr/local/bin/aws_completer aws
+if [ -x "/usr/local/bin/aws_completer" ]; then
+    complete -C /usr/local/bin/aws_completer aws
+fi
 
 export LANG=en_IN.UTF-8
 
@@ -163,15 +204,19 @@ RPROMPT='$(git_branch_name) $(date +%T)'
 
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/sohom/google-cloud-sdk/path.zsh.inc' ]; then . '/home/sohom/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/home/sohom/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/sohom/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
 
 alias pssh="parallel-ssh"
 alias pscp="parallel-scp"
-alias bat=batcat
+
+# Handle bat alias (batcat on some Linux, bat on others)
+if command -v batcat >/dev/null 2>&1; then
+    alias bat=batcat
+fi
 
 
 # rg to read into symlinks and ignore vcs things
@@ -181,15 +226,19 @@ alias kc="kubectx"
 alias k="kubectl"
 alias less="less -R"
 
-export PNPM_HOME="/home/sohom/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
 
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [ -f ~/.fzf.zsh ]; then
+    source ~/.fzf.zsh
+elif command -v fzf >/dev/null 2>&1; then
+    # If fzf is installed but ~/.fzf.zsh doesn't exist (likely via brew)
+    source <(fzf --zsh)
+fi
 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
@@ -198,5 +247,5 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 
 if [ -n "${ZSH_DEBUGRC+1}" ]; then
-	    zprof
+    zprof
 fi
