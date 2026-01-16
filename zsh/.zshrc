@@ -74,7 +74,7 @@ unset RPROMPT
 typeset -U path
 
 # for thinkpad
-path=(/home/sohom/bin /home/sohom/.rbenv/bin /home/sohom/.local/bin /home/sohom/.pyenv/bin /usr/lib/ccache/bin /usr/local/go/bin /usr/local/bin /usr/local/sbin /bin /usr/bin /sbin /usr/sbin /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl /home/sohom/anaconda3/bin/ /usr/games/ /home/sohom/.tfenv/bin /home/sohom/.cargo/bin /home/sohom/zig/zig-nightly-latest/ /home/sohom/zig/bin/)
+path=(/home/sohom/.opencode/bin /home/sohom/bin /home/sohom/.rbenv/bin /home/sohom/.local/bin /home/sohom/.pyenv/bin /usr/lib/ccache/bin /usr/local/go/bin /usr/local/bin /usr/local/sbin /bin /usr/bin /sbin /usr/sbin /usr/lib/jvm/default/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl /home/sohom/anaconda3/bin/ /usr/games/ /home/sohom/.tfenv/bin /home/sohom/.cargo/bin /home/sohom/zig/zig-nightly-latest/ /home/sohom/zig/bin/ /opt/nvim-linux-x86_64/bin)
 
 
 # nvm  (lazy load nvm)
