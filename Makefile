@@ -6,7 +6,7 @@ TARGET_HOME := $(HOME)
 TARGET_SCRIPTS := $(HOME)/work_space/scripts
 
 # Packages that go to the home directory
-PACKAGES := config emacs gitconfig tmux vim nvim xbindkeys Xwin zsh
+PACKAGES := config emacs gitconfig tmux vim nvim xbindkeys Xwin zsh opencode gemini agents
 
 .PHONY: all install help scripts $(PACKAGES)
 all: help

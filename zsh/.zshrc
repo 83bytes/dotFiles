@@ -81,6 +81,7 @@ typeset -U path
 
 # Common paths
 path=(
+  /opt/homebrew/bin        # macOS Homebrew
   $HOME/.opencode/bin
   $HOME/bin
   $HOME/.rbenv/bin
@@ -94,7 +95,6 @@ path=(
   /usr/bin
   /sbin
   /usr/sbin
-  /opt/homebrew/bin        # macOS Homebrew
   /usr/lib/jvm/default/bin
   /usr/bin/site_perl
   /usr/bin/vendor_perl
@@ -249,3 +249,10 @@ export SDKMAN_DIR="$HOME/.sdkman"
 if [ -n "${ZSH_DEBUGRC+1}" ]; then
     zprof
 fi
+
+# bun completions
+[ -s "/Users/sohom/.bun/_bun" ] && source "/Users/sohom/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
