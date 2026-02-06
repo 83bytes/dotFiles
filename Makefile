@@ -6,7 +6,7 @@ TARGET_HOME := $(HOME)
 TARGET_SCRIPTS := $(HOME)/work_space/scripts
 
 # Packages that go to the home directory
-PACKAGES := config emacs gitconfig tmux vim nvim xbindkeys Xwin zsh opencode gemini agents
+PACKAGES := config emacs gitconfig tmux vim xbindkeys Xwin zsh opencode gemini agents
 
 .PHONY: all install help scripts $(PACKAGES)
 all: help
@@ -17,12 +17,12 @@ install: $(PACKAGES) scripts
 # Individual package targets
 # Allows running 'make vim', 'make zsh', etc.
 $(PACKAGES):
-	$(STOW_BIN) -t $(TARGET_HOME) $@
+	-$(STOW_BIN) -t $(TARGET_HOME) $@
 
 # Scripts target (special location)
 scripts:
 	@mkdir -p $(TARGET_SCRIPTS)
-	$(STOW_BIN) -t $(TARGET_SCRIPTS) scripts
+	-$(STOW_BIN) -t $(TARGET_SCRIPTS) scripts
 
 # Clean targets
 .PHONY: clean $(addprefix clean-,$(PACKAGES)) clean-scripts
