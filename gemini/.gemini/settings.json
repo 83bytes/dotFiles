@@ -1,4 +1,12 @@
 {
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "experimental": {
+    "plan": true
+  },
   "context": {
     "fileName": ["AGENTS.md", "GEMINI.md"]
   }
