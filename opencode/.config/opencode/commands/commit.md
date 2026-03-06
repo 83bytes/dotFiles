@@ -43,14 +43,28 @@ Must be one of:
 - Use bullet points
 - Think: "What would help me understand this change 2 years from now?"
 
+## Commit Strategy
+
+Each commit must be a **complete unit of work**:
+- It should compile independently
+- It should be independently reviewable (~200 lines ideal, but flexible)
+- Split changes into small, logical, independent commits
+
 ## Instructions
 
-1. First run `git status` and `git diff --staged` to see what changes are staged
-2. If no changes are staged, inform the user they need to stage changes first
+1. Run `git status` and `git diff --staged` to see what changes are staged
+2. If no changes are staged, check for unstaged changes:
+   - If unstaged changes exist, show them and ask the user if they want to stage all or select specific files
+   - If no changes at all, inform the user there is nothing to commit
 3. Analyze the staged changes to understand what was modified
-4. Based on the changes, suggest an appropriate type and scope
-5. Draft a commit message following the format above
-6. Show the proposed commit message to the user for approval
-7. Once approved, create the commit using `git commit` (do NOT use -m flag, use a temp file or heredoc for multi-line messages)
+4. **Fixup detection**: Run `git log --oneline` for the current branch and check if the staged changes are a correction/extension of an existing commit on the branch. If so:
+   - Suggest using `git commit --fixup=<commit-hash>` instead of a regular commit
+   - Explain that the user can later rebase with `--autosquash` to fold it in
+   - If the user declines, proceed with a regular commit
+5. Based on the changes, suggest an appropriate type
+6. **Show the full diff** (`git diff --staged`) before proposing the commit message
+7. Draft a commit message following the format above
+8. Show the proposed commit message to the user for approval
+9. Once approved, create the commit using `git commit -F` with a heredoc (do NOT use `-m` flag for multi-line messages)
 
 $ARGUMENTS

@@ -1,5 +1,18 @@
 # Global Agent Guidelines
 
+## Well-Known Locations
+
+These are fixed, well-defined directories. Do not guess or ask for them.
+
+| Path | Description | Git-tracked |
+|------|-------------|-------------|
+| `~/workspace/` | Parent directory for all project repos | n/a |
+| `~/workspace/tmp/` | Temporary/throwaway clones (always shallow clone) | n/a |
+| `~/workspace/gameplans/` | Gameplan files for active work items | **yes** |
+| `~/llm-notes/` | Research output, notes, and analysis | **yes** |
+
+**Important**: Both `~/workspace/gameplans/` and `~/llm-notes/` are git repositories. Any changes to files in these directories must be committed after modification.
+
 ## Safety First
 
 - Always ask before making any file modifications
@@ -21,6 +34,35 @@
 - Clone temporary repos under ~/workspace/tmp
 - Always shallow clone temporary repos for analysis etc
 
+### Git Worktree Commands (Allowed)
+
+The following git worktree commands are permitted:
+
+```bash
+# List all worktrees
+git worktree list
+
+# Add a new worktree
+git worktree add <path> <branch>
+git worktree add -b <new-branch> <path> <start-point>
+
+# Remove a worktree
+git worktree remove <worktree>
+
+# Prune stale worktree references
+git worktree prune
+
+# Lock/unlock a worktree (prevents pruning)
+git worktree lock <worktree>
+git worktree unlock <worktree>
+
+# Move a worktree to a new path
+git worktree move <worktree> <new-path>
+
+# Repair worktree references
+git worktree repair
+```
+
 ## File Operations
 
 - Do not delete files without confirmation
@@ -37,8 +79,8 @@
 - When uncertain, ask for clarification
 - Provide context for recommendations
 - Explain trade-offs when multiple approaches exist
-- Notify using OS tools (like notify-send in linux and osascript in macos) to ask for attention / permissions. 
-- Write all research output into ~/llm-notes/<filename>.md when asked to "write"
+- Notify using OS tools (like notify-send in linux and osascript in macos) to ask for attention / permissions
+- Write all research output into `~/llm-notes/<filename>.md` when asked to "write" (see Well-Known Locations). Commit after writing.
 
 ---
 
