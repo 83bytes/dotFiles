@@ -1,0 +1,49 @@
+{
+    "workbench.colorTheme": "Visual Studio Light",
+    "makefile.configureOnOpen": false,
+    "redhat.telemetry.enabled": false,
+    "extensions.ignoreRecommendations": true,
+
+    // --- File watcher excludes (prevents FS events from overwhelming VSCode) ---
+    "files.watcherExclude": {
+        "**/node_modules/**": true,
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/vendor/**": true,
+        "**/bin/**": true,
+        "**/pkg/mod/**": true,
+        "**/tmp/**": true,
+        "**/.next/**": true,
+        "**/dist/**": true,
+        "**/build/**": true,
+        "**/__pycache__/**": true,
+        "**/.venv/**": true,
+        "**/venv/**": true
+    },
+
+    // --- Hide from Explorer sidebar ---
+    "files.exclude": {
+        "**/node_modules": true,
+        "**/vendor": true,
+        "**/__pycache__": true
+    },
+
+    // --- Exclude from search results ---
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/vendor": true,
+        "**/pkg/mod": true,
+        "**/dist": true,
+        "**/build": true,
+        "**/.venv": true
+    },
+
+    // --- Go / gopls: reduce memory usage ---
+    "gopls": {
+        "memoryMode": "DegradeClosed"
+    },
+
+    // --- Git: reduce background work ---
+    "git.autorefresh": false,
+    "git.decorations.enabled": false
+}
