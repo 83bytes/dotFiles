@@ -1,0 +1,27 @@
+gemini/.gemini/commands/start_work.toml
+  ddbe99575e0770ea 88
+agents/.agents/AGENTS.md
+  ddbe99575e0770ea 12-13,15,84
+opencode/.config/opencode/commands/start_work.md
+  ddbe99575e0770ea 142
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "fadbf9dcab55a363a9d119d6ec2f7ed5091f5bfe",
+  "prompts": {
+    "ddbe99575e0770ea": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_2189faa90ffe5rpfgVtBY7Lu9l",
+        "model": "anthropic/claude-opus-4-6"
+      },
+      "human_author": "Sohom Bhattacharjee",
+      "messages": [],
+      "total_additions": 6,
+      "total_deletions": 5,
+      "accepted_lines": 6,
+      "overriden_lines": 0
+    }
+  }
+}
