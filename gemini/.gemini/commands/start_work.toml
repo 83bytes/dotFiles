@@ -29,7 +29,7 @@ If argument is not provided, list available gameplan files in `~/workspace/gamep
 ### 2. Validate Workspace
 
 1. Verify the worktree exists at the specified workspace path
-2. If not, ask user if they want to run `/init_workspace` first
+2. If not, ask user if they want to run `/init_work` first
 3. Check the worktree is on the correct branch using `git worktree list`
 4. Navigate to the workspace directory
 

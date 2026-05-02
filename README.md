@@ -34,7 +34,7 @@ Both have the same commands:
 | Command | Description |
 |---------|-------------|
 | `/commit` | Structured commit with fixup detection, unstaged handling, show-diff-before-commit |
-| `/init_workspace` | Create git worktree + gameplan file, commit gameplan, tell user to review |
+| `/init_work` | Create gameplan file for a work item, commit it, tell user to review |
 | `/start_work` | Read gameplan, execute tasks, commit gameplan after each task, checkpoint with user |
 
 ## Usage
