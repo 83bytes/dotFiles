@@ -45,5 +45,7 @@
 
     // --- Git: reduce background work ---
     "git.autorefresh": false,
-    "git.decorations.enabled": false
+    "git.decorations.enabled": false,
+    "python.analysis.typeCheckingMode": "standard",
+    "explorer.confirmDragAndDrop": false
 }
