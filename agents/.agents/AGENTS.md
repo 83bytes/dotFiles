@@ -9,9 +9,10 @@ These are fixed, well-defined directories. Do not guess or ask for them.
 | `~/workspace/` | Parent directory for all project repos | n/a |
 | `~/workspace/tmp/` | Temporary/throwaway clones (always shallow clone) | n/a |
 | `~/workspace/gameplans/` | Gameplan files for active work items | **yes** |
-| `~/llm-notes/` | Research output, notes, and analysis | **yes** |
+| `~/workspace/gameplans/llm-notes/` | Research output, notes, and analysis | **yes** |
+| `~/workspace/gameplans/notes/` | General notes and references | **yes** |
 
-**Important**: Both `~/workspace/gameplans/` and `~/llm-notes/` are git repositories. Any changes to files in these directories must be committed after modification.
+**Important**: `~/workspace/gameplans/` is a git repository. All gameplans, research notes, and general notes live here. Commit after any modification.
 
 ## Safety First
 
@@ -80,7 +81,7 @@ git worktree repair
 - Provide context for recommendations
 - Explain trade-offs when multiple approaches exist
 - Notify using OS tools (like notify-send in linux and osascript in macos) to ask for attention / permissions
-- Write all research output into `~/llm-notes/<filename>.md` when asked to "write" (see Well-Known Locations). Commit after writing.
+- Write all research output into `~/workspace/gameplans/llm-notes/<filename>.md` when asked to "write" (see Well-Known Locations). Commit after writing.
 
 ---
 

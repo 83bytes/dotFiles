@@ -139,6 +139,6 @@ This will:
 - Keep the gameplan updated as single source of truth
 - Surface blockers and open questions early
 - Use parallel agents when tasks are independent
-- Write research output to `~/llm-notes/` and commit (also a git repo)
+- Write research output to `~/workspace/gameplans/llm-notes/` and commit
 
 $ARGUMENTS
