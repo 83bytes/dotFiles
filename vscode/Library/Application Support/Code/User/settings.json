@@ -47,5 +47,10 @@
     "git.autorefresh": false,
     "git.decorations.enabled": false,
     "python.analysis.typeCheckingMode": "standard",
-    "explorer.confirmDragAndDrop": false
+    "explorer.confirmDragAndDrop": false,
+    "git.confirmSync": false,
+    "git.openRepositoryInParentFolders": "never",
+    "go.toolsManagement.autoUpdate": true,
+    "git.path": "/Users/sohom/.git-ai/bin/git",
+    "chat.useHooks": true
 }

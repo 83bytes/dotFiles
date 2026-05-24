@@ -256,3 +256,6 @@ fi
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Added by git-ai installer on Sun May 24 01:14:31 IST 2026
+export PATH="/Users/sohom/.git-ai/bin:$PATH"

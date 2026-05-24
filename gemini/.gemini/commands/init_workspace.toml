@@ -1,8 +1,0 @@
-description = "[Deprecated] Use /init_work instead"
-prompt = """
-This command has been renamed to `/init_work`. Please use `/init_work` instead.
-
-Run `/init_work {{args}}` to create a gameplan file for a new work item.
-
-{{args}}
-"""

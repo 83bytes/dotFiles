@@ -11,3 +11,6 @@ set fish_user_paths /home/sohomb/work_space/go/lib/bin $fish_user_paths
 #set fish_user_paths /home/sohomb/work_space/go/code/bin $fish_user_paths
 
 set -x GOPATH /home/sohomb/work_space/go/lib /home/sohomb/work_space/go/code
+
+# Added by git-ai installer on Sun May 24 01:14:31 IST 2026
+fish_add_path -g "/Users/sohom/.git-ai/bin"

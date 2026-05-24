@@ -1,1 +1,0 @@
-/Users/sohom/.agents/AGENTS.md
