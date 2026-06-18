@@ -187,7 +187,7 @@ export LANG=en_IN.UTF-8
 # Find and set branch name var if in git repository.
 function git_branch_name()
 {
-  branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
+  branch=$(git symbolic-ref --short HEAD 2> /dev/null)
   if [[ $branch == "" ]];
   then
     :
@@ -221,7 +221,7 @@ fi
 
 # rg to read into symlinks and ignore vcs things
 # ideal for usage in shipment because we use heavy symlinking AND gitignores
-alias rg="rg --no-ignore-vcs --follow"
+alias rg="rg -uu --no-ignore-vcs --follow"
 alias kc="kubectx"
 alias k="kubectl"
 alias less="less -R"
