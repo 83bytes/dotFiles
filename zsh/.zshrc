@@ -221,7 +221,7 @@ fi
 
 # rg to read into symlinks and ignore vcs things
 # ideal for usage in shipment because we use heavy symlinking AND gitignores
-alias rg="rg -uu --no-ignore-vcs --follow"
+alias rg="rg -uu --no-ignore-vcs --follow --glob '!.git/**'"
 alias kc="kubectx"
 alias k="kubectl"
 alias less="less -R"
