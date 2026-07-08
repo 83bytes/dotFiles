@@ -1,0 +1,30 @@
+{
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "experimental": {},
+  "context": {
+    "fileName": [
+      "AGENTS.md",
+      "GEMINI.md"
+    ]
+  },
+  "ui": {
+    "theme": "Default Light"
+  },
+  "general": {
+    "sessionRetention": {
+      "enabled": true,
+      "maxAge": "30d",
+      "warningAcknowledged": true
+    },
+    "plan": {
+      "enabled": true
+    }
+  },
+  "agents": {
+    "overrides": {}
+  }
+}
