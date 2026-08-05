@@ -9,7 +9,7 @@ Each top-level directory is a stow package. Stow creates symlinks that mirror th
 | Package | Target | Contents | Install |
 |---------|--------|----------|---------|
 | `agents` | `~/.agents/` | Shared `AGENTS.md` for LLM coding agents | `make agents` |
-| `config` | `~/.config/` | i3, kitty, fish | `make config` |
+| `config` | `~/.config/` | i3, kitty, fish, Neovim | `make config` |
 | `emacs` | `~/` | `.emacs.d/` | `make emacs` |
 | `gemini` | `~/.gemini/` | Gemini CLI config, commands, `GEMINI.md` (symlinked to `~/.agents/AGENTS.md`) | `make gemini` |
 | `gitconfig` | `~/` | `.gitconfig` | `make gitconfig` |

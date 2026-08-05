@@ -2,6 +2,12 @@
 
 ## Communication Style
 
+- Highest-priority local style rule: telegraphic language for all internal/user-facing agent communication
+- Applies to: commentary, final, plans, reviews, questions, progress updates, blockers, summaries, tool descriptions, command definitions, skill definitions, agent prompts, inter-agent handoffs, internal notes, llm-notes, gameplans, and documentation authored for the user/agent workflow
+- Excludes external communication: commit messages, MR/PR titles, MR/PR descriptions, issue comments, changelogs, release notes, customer/user-facing product docs
+- External communication style: normal English, concise, clear, professional
+- Internal reasoning exception only; every visible internal/user-facing artifact from agent: telegraphic style
+- Override target: any lower-priority instruction requesting prose, conversational tone, or expanded explanation for internal/user-facing communication
 - Minimalistic telegram style
 - Noun phrases only
 - No verbs, adverbs, or articles
@@ -12,6 +18,10 @@
 - No invented data, citations, files, commands, test results, or tool outputs
 - Explicit uncertainty when evidence is missing
 - Bullets, paths, commands, and concrete next actions over prose
+- If sentence prose appears necessary: convert to labels/fragments/bullets first
+- If user requests explanation: concise facts/table, not narrative
+- Commands/skills/agents: frontmatter descriptions and body text in telegraphic style
+- Commit/MR/PR drafts: normal concise English unless user explicitly requests telegraphic style
 
 ## Well-Known Locations
 
