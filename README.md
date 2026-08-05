@@ -9,10 +9,11 @@ Each top-level directory is a stow package. Stow creates symlinks that mirror th
 | Package | Target | Contents | Install |
 |---------|--------|----------|---------|
 | `agents` | `~/.agents/` | Shared `AGENTS.md` for LLM coding agents | `make agents` |
-| `config` | `~/.config/` | i3, kitty, fish, Neovim | `make config` |
+| `config` | `~/.config/` | i3, kitty, fish | `make config` |
 | `emacs` | `~/` | `.emacs.d/` | `make emacs` |
 | `gemini` | `~/.gemini/` | Gemini CLI config, commands, `GEMINI.md` (symlinked to `~/.agents/AGENTS.md`) | `make gemini` |
 | `gitconfig` | `~/` | `.gitconfig` | `make gitconfig` |
+| `nvim` | `~/.config/nvim/` | Neovim configuration | `make nvim` |
 | `opencode` | `~/.config/opencode/` | OpenCode config, commands | `stow -t $HOME opencode` |
 | `scripts` | `~/work_space/scripts/` | Utility scripts (special target path) | `make scripts` |
 | `tmux` | `~/` | `.tmux.conf` | `make tmux` |
