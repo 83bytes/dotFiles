@@ -1,0 +1,19 @@
+config/.config/nvim/lazyvim.json
+  s_377dbf117369fa::t_5612ae1aa98ffd 1-23
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "ee5915e1cfbc254a17623bddb2bf9c75cc286b8b",
+  "prompts": {},
+  "sessions": {
+    "s_377dbf117369fa": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_02f04bd03ffeiDTIgfF7Ghpaqf",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Sohom Bhattacharjee <soham.bhattacharjee15@gmail.com>"
+    }
+  }
+}
