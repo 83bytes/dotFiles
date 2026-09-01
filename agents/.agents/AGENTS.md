@@ -37,6 +37,52 @@ These are fixed directories. Do not guess or ask for them.
 
 `~/workspace/gameplans/` is a git repository. Commit after modifying gameplans or notes.
 
+## Workflow
+
+1. **Gameplan first** — scope in `~/workspace/gameplans/gameplan-<JIRA>.md`
+   - Ticket info, objective, acceptance criteria, approach, tasks, questions
+   - Commit gameplan to `gameplans` repo
+
+2. **Fresh pull from base** — `staging` (pcap-collector, terraform, etc.) or `main` (other repos)
+   - `git checkout <base> && git pull origin <base>`
+
+3. **Fresh worktree** — `~/workspace/<repo>-<JIRA>`
+   - `git worktree add -b sohom/<JIRA> ~/workspace/<repo>-<JIRA> <base>`
+
+4. **Implement** — per gameplan tasks
+   - One task at a time, mark `[x]` in gameplan
+   - Commit gameplan progress after each task
+   - Frequent typecheck/lint/test
+
+5. **Review** — `/code-review` before MR
+
+6. **MR** — rebased MR creation per `rebased-mr-create` skill
+
+## Conventions
+
+- Branch: `sohom/<JIRA>`
+- Worktree: `~/workspace/<repo>-<JIRA>`
+- Gameplan: `~/workspace/gameplans/gameplan-<JIRA>.md`
+- Commit messages: normal English, concise, descriptive
+- Never force push or rewrite history without approval
+
+## Skills used in sequence
+
+| Step | Skill |
+|------|-------|
+| Scope | `gameplan-workflow` |
+| Design (large projects) | `grill-with-docs` |
+| Implement | `implement` |
+| Review | `code-review` |
+| MR | `rebased-mr-create` |
+
+## Reminders
+
+- Ask before file modifications
+- Show diff before committing project code
+- Commit gameplan changes autonomously
+- Surface blockers early
+
 ## Safety
 
 - Always ask before making any file modifications
