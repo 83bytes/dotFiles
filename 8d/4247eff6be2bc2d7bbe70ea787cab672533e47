@@ -1,0 +1,19 @@
+config/.config/fish/config.fish
+  s_29796685bccbef::t_a9b0c6bc8f9573 1-4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "8d4247eff6be2bc2d7bbe70ea787cab672533e47",
+  "prompts": {},
+  "sessions": {
+    "s_29796685bccbef": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_f7ec7cda0ffe5BURAQdvzh63we",
+        "model": "@cf/deepseek-ai/deepseek-v4-flash"
+      },
+      "human_author": "Sohom Bhattacharjee <soham.bhattacharjee15@gmail.com>"
+    }
+  }
+}
