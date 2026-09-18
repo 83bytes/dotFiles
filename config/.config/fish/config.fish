@@ -1,3 +1,7 @@
+# The following lines were added by Docker Desktop to add commands to your PATH.
+export PATH="$PATH:/Users/sohom/.docker/bin"
+# End of Docker Desktop section.
+
 set TERM xterm
 
 # for rust

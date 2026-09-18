@@ -243,3 +243,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 #
 
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+# Machine-local Vault helpers.
+if [[ "${HOST%%.*}" == "M25000JX00" ]]; then
+  source "$HOME/.cloudflare/vault-helpers.zsh"
+fi

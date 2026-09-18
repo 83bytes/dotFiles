@@ -66,15 +66,24 @@ These are fixed directories. Do not guess or ask for them.
 - Commit messages: normal English, concise, descriptive
 - Never force push or rewrite history without approval
 
+## Model Routing
+
+- Planning/design/scoping/research/review/MR prep model: `openai/gpt-5.5`
+- Implementation/code edits/TDD green loop/build/general model: `cloudflare-workers-ai/@cf/moonshotai/kimi-k2.7-code`
+- Planning agents: `plan`, `explore`, `research`, `review`
+- Implementation agents: `build`, `general`
+- Before spawning agents: choose model category from task intent, not skill name alone.
+- Mixed work: use planning model for investigation and decisions, implementation model for file edits and tests.
+
 ## Skills used in sequence
 
-| Step | Skill |
-|------|-------|
-| Scope | `gameplan-workflow` |
-| Design (large projects) | `grill-with-docs` |
-| Implement | `implement` |
-| Review | `code-review` |
-| MR | `rebased-mr-create` |
+| Step | Skill | Model |
+|------|-------|-------|
+| Scope | `gameplan-workflow` | `openai/gpt-5.5` |
+| Design (large projects) | `grill-with-docs` | `openai/gpt-5.5` |
+| Implement | `implement` | `cloudflare-workers-ai/@cf/moonshotai/kimi-k2.7-code` |
+| Review | `code-review` | `openai/gpt-5.5` |
+| MR | `rebased-mr-create` | `openai/gpt-5.5` |
 
 ## Reminders
 
