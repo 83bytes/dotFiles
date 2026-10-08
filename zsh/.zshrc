@@ -159,28 +159,10 @@ if [ -x "/usr/local/bin/aws_completer" ]; then
     complete -C /usr/local/bin/aws_completer aws
 fi
 
-export LANG=en_IN.UTF-8
-
-
-
-
-# Find and set branch name var if in git repository.
-function git_branch_name()
-{
-  branch=$(git symbolic-ref --short HEAD 2> /dev/null)
-  if [[ $branch == "" ]];
-  then
-    :
-  else
-    echo '- ('$branch')'
-  fi
-}
-
-# Enable substitution in the prompt.
-setopt prompt_subst
-
-# Config for prompt. PS1 synonym.
-RPROMPT='$(git_branch_name) $(date +%T)'
+# Clock, directory, and Sorin's asynchronous Git status before the prompt arrows.
+zstyle ':prezto:module:git:info:branch' format ' %%B%F{2}(%b)%f%%b'
+PROMPT='%D{%T} ${SSH_TTY:+"%F{9}%n%f%F{7}@%f%F{3}%m%f "}%F{4}${_prompt_sorin_pwd}%(!. %B%F{1}#%f%b.)${_prompt_sorin_git:+ }${_prompt_sorin_git}${editor_info[keymap]} '
+RPROMPT=''
 
 
 # The next line updates PATH for the Google Cloud SDK.
