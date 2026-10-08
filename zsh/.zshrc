@@ -9,9 +9,9 @@
 export LC_ALL="en_US.UTF-8"
 export LANG="en_IN.UTF-8"
 
-if [ -n "${ZSH_DEBUGRC+1}" ]; then
-    zmodload zsh/zprof
-fi
+# if [ -n "${ZSH_DEBUGRC+1}" ]; then
+#     zmodload zsh/zprof
+# fi
 
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -58,7 +58,7 @@ setopt SHARE_HISTORY
 unsetopt HIST_VERIFY
 
 # Cross-platform ls alias
-if [[ $(uname) == "Darwin" ]]; then
+if [[ $OSTYPE == darwin* ]]; then
   # macOS (BSD ls)
   alias ls="ls -G"
 else
@@ -73,6 +73,9 @@ alias ted="emacsclient -nw"
 alias ned="emacsclient -nc"
 
 alias ec="emacsclient -n"
+
+# start silverbullet with personal data dir
+alias sb-start="silverbullet ~/workspace/personal/sb-data"
 
 unset RPROMPT
 
@@ -110,7 +113,25 @@ path=(
 
 
 # fnm (Fast Node Manager)
-eval "$(fnm env --use-on-cd)"
+if (( $+commands[fnm] )); then
+    typeset -g _fnm_lazy_initialized=0
+
+    _fnm_lazy_init() {
+        (( _fnm_lazy_initialized )) && return 0
+
+        eval "$(command fnm env --use-on-cd)" || return
+        _fnm_lazy_initialized=1
+        command fnm use --silent-if-unchanged >/dev/null 2>&1
+    }
+
+    fnm()      { _fnm_lazy_init; command fnm "$@" }
+    node()     { _fnm_lazy_init; command node "$@" }
+    npm()      { _fnm_lazy_init; command npm "$@" }
+    npx()      { _fnm_lazy_init; command npx "$@" }
+    corepack() { _fnm_lazy_init; command corepack "$@" }
+    pnpm()     { _fnm_lazy_init; command pnpm "$@" }
+    yarn()     { _fnm_lazy_init; command yarn "$@" }
+fi
 
 
 
@@ -119,9 +140,8 @@ pyenv() {
     eval "$(pyenv init -)"
     pyenv "$@"
 }
-#
-#
-#if command -v pyenv 1>/dev/null 2>&1; then eval "$(pyenv init -)"; fi
+
+# pyenv initialization deferred until first `pyenv` command.
 
 
 # This is for GO-Lang.
@@ -136,13 +156,39 @@ if [ -d "/usr/lib/jvm/java-21-openjdk-amd64" ]; then
     export PATH=$JAVA_HOME/bin:$PATH
 fi
 
-#rbenv() {
-#	unset -f rbenv
-#	eval "$(rbenv init -)"
-#	rbenv "$@"
-#}
+rbenv() {
+	unset -f rbenv
+	eval "$(rbenv init -)"
+	rbenv "$@"
+}
 
-[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+if [[ -n $commands[kubectl] ]]; then
+    _kubectl_completion_cache="${XDG_CACHE_HOME:-$HOME/.cache}/prezto/kubectl-completion.zsh"
+    _kubectl_completion_loaded=0
+
+    _kubectl_load_completion() {
+        (( _kubectl_completion_loaded )) && return 0
+
+        if [[ ! -s $_kubectl_completion_cache || $commands[kubectl] -nt $_kubectl_completion_cache ]]; then
+            command kubectl completion zsh >| "$_kubectl_completion_cache" || return
+        fi
+
+        source "$_kubectl_completion_cache" || return
+        _kubectl_completion_loaded=1
+    }
+
+    _kubectl_lazy_complete() {
+        _kubectl_load_completion || return
+        _kubectl "$@"
+    }
+
+    kubectl() {
+        _kubectl_load_completion || return
+        command kubectl "$@"
+    }
+
+    compdef _kubectl_lazy_complete kubectl
+fi
 
 autoload -U +X bashcompinit && bashcompinit
 
@@ -150,7 +196,6 @@ if [ -x "/usr/bin/terraform" ]; then
     complete -o nospace -C /usr/bin/terraform terraform
 fi
 
-alias xtime="/bin/time --format  '%Uu %Ss %er %MkB %C'"
 
 
 
@@ -175,7 +220,7 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-clou
 alias pssh="parallel-ssh"
 alias pscp="parallel-scp"
 
-# Handle bat alias (batcat on some Linux, bat on others)
+# # Handle bat alias (batcat on some Linux, bat on others)
 if command -v batcat >/dev/null 2>&1; then
     alias bat=batcat
 fi
@@ -197,9 +242,13 @@ esac
 
 if [ -f ~/.fzf.zsh ]; then
     source ~/.fzf.zsh
-elif command -v fzf >/dev/null 2>&1; then
-    # If fzf is installed but ~/.fzf.zsh doesn't exist (likely via brew)
-    source <(fzf --zsh)
+elif command -v fzf >/dev/null 2>&1 && [[ -t 0 ]]; then
+    _fzf_completion_cache="${XDG_CACHE_HOME:-$HOME/.cache}/prezto/fzf.zsh"
+    if [[ ! -s $_fzf_completion_cache || $commands[fzf] -nt $_fzf_completion_cache ]]; then
+        command fzf --zsh >| "$_fzf_completion_cache"
+    fi
+    [[ -s $_fzf_completion_cache ]] && source "$_fzf_completion_cache"
+    unset _fzf_completion_cache
 fi
 
 
@@ -208,10 +257,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 
-if [ -n "${ZSH_DEBUGRC+1}" ]; then
-    zprof
-fi
-
 # bun completions
 [ -s "/Users/sohom/.bun/_bun" ] && source "/Users/sohom/.bun/_bun"
 
@@ -219,14 +264,14 @@ fi
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# Added by git-ai installer on Sun May 24 01:14:31 IST 2026
-# export PATH="/Users/sohom/.git-ai/bin:$PATH"
-#
-#
 
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
 # Machine-local Vault helpers.
 if [[ "${HOST%%.*}" == "M25000JX00" ]]; then
   source "$HOME/.cloudflare/vault-helpers.zsh"
+fi
+
+if [ -n "${ZSH_DEBUGRC+1}" ]; then
+    zprof
 fi

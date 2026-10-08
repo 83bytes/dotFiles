@@ -53,5 +53,6 @@
     "go.toolsManagement.autoUpdate": true,
     "git.path": "/Users/sohom/.git-ai/bin/git",
     "chat.useHooks": true,
-    "chat.disableAIFeatures": true
+    "chat.disableAIFeatures": true,
+    "harper.dialect": "American"
 }
