@@ -243,3 +243,12 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 #
 
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+# Nix
+unset __ETC_PROFILE_NIX_SOURCED
+unset __NIX_PROFILE_SOURCED
+
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+# End Nix
