@@ -37,6 +37,61 @@ These are fixed directories. Do not guess or ask for them.
 
 `~/workspace/gameplans/` is a git repository. Commit after modifying gameplans or notes.
 
+## Workflow
+
+1. **Gameplan first** — scope in `~/workspace/gameplans/gameplan-<JIRA>.md`
+   - Ticket info, objective, acceptance criteria, approach, tasks, questions
+   - Commit gameplan to `gameplans` repo
+
+2. **Fresh pull from base** — `staging` (pcap-collector, terraform, etc.) or `main` (other repos)
+   - `git checkout <base> && git pull origin <base>`
+
+3. **Fresh worktree** — `~/workspace/<repo>-<JIRA>`
+   - `git worktree add -b sohom/<JIRA> ~/workspace/<repo>-<JIRA> <base>`
+
+4. **Implement** — per gameplan tasks
+   - One task at a time, mark `[x]` in gameplan
+   - Commit gameplan progress after each task
+   - Frequent typecheck/lint/test
+
+5. **Review** — `/code-review` before MR
+
+6. **MR** — rebased MR creation per `rebased-mr-create` skill
+
+## Conventions
+
+- Branch: `sohom/<JIRA>`
+- Worktree: `~/workspace/<repo>-<JIRA>`
+- Gameplan: `~/workspace/gameplans/gameplan-<JIRA>.md`
+- Commit messages: normal English, concise, descriptive
+- Never force push or rewrite history without approval
+
+## Model Routing
+
+- Planning/design/scoping/research/review/MR prep model: `openai/gpt-5.5`
+- Implementation/code edits/TDD green loop/build/general model: `cloudflare-workers-ai/@cf/moonshotai/kimi-k2.7-code`
+- Planning agents: `plan`, `explore`, `research`, `review`
+- Implementation agents: `build`, `general`
+- Before spawning agents: choose model category from task intent, not skill name alone.
+- Mixed work: use planning model for investigation and decisions, implementation model for file edits and tests.
+
+## Skills used in sequence
+
+| Step | Skill | Model |
+|------|-------|-------|
+| Scope | `gameplan-workflow` | `openai/gpt-5.5` |
+| Design (large projects) | `grill-with-docs` | `openai/gpt-5.5` |
+| Implement | `implement` | `cloudflare-workers-ai/@cf/moonshotai/kimi-k2.7-code` |
+| Review | `code-review` | `openai/gpt-5.5` |
+| MR | `rebased-mr-create` | `openai/gpt-5.5` |
+
+## Reminders
+
+- Ask before file modifications
+- Show diff before committing project code
+- Commit gameplan changes autonomously
+- Surface blockers early
+
 ## Safety
 
 - Always ask before making any file modifications
