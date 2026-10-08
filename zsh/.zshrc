@@ -272,9 +272,6 @@ if [[ "${HOST%%.*}" == "M25000JX00" ]]; then
   source "$HOME/.cloudflare/vault-helpers.zsh"
 fi
 
-if [ -n "${ZSH_DEBUGRC+1}" ]; then
-    zprof
-fi
 
 # Nix (not on office laptop)
 if [[ "${HOST%%.*}" != "M25000JX00" ]]; then
@@ -283,5 +280,11 @@ if [[ "${HOST%%.*}" != "M25000JX00" ]]; then
 
     if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
     . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+    fi
 fi
 # End Nix
+
+
+if [ -n "${ZSH_DEBUGRC+1}" ]; then
+    zprof
+fi
