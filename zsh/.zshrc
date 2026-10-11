@@ -74,8 +74,8 @@ alias ned="emacsclient -nc"
 
 alias ec="emacsclient -n"
 
-# start silverbullet with personal data dir
-alias sb-start="silverbullet ~/workspace/personal/sb-data"
+# # start silverbullet with personal data dir
+# alias sb-start="silverbullet ~/workspace/personal/sb-data"
 
 unset RPROMPT
 

@@ -10,7 +10,7 @@ Start implementation work on a project by reading the gameplan and coordinating 
 ## Expected Arguments
 
 This skill requires:
-- **gameplan-identifier**: A ticket ID (e.g., PROJ-123) or a project name (e.g., "refactor-auth-module")
+- **gameplan-identifier**: A project or task name (e.g., "refactor-auth-module")
 
 If the identifier is not provided, list available gameplan files in `~/workspace/gameplans/` and ask the user to choose.
 
@@ -51,19 +51,19 @@ For each pending task in the gameplan:
 2. **Analyze the task** -- understand what needs to be done.
 3. **Research** relevant code sections, dependencies, architecture as needed.
 4. **Implement the changes** following the proposed approach in the gameplan.
-5. **Update and commit the gameplan** (see section 5).
-6. **Commit code changes** if appropriate (ask the user first).
+5. **Update the gameplan** (see section 5).
+6. **Show the code diff** and commit code changes only after user approval.
 
 ### 5. Update Gameplan (after every completed task)
 
-After completing **each task** (not just at the end), update and commit the gameplan:
+After completing **each task** (not just at the end), update the gameplan:
 
 1. Mark completed tasks with `[x]`.
 2. Add an entry to the Progress Log with the date and a summary.
 3. Update the Notes section with any discoveries.
 4. Add new tasks if the scope expanded.
 5. Update Open Questions if any arose.
-6. **Commit the gameplan file** in the `~/workspace/gameplans/` repo:
+6. If `~/workspace/gameplans/` is version-controlled, commit the gameplan file after diff review and user approval:
    ```bash
    cd ~/workspace/gameplans
    git add gameplan-<identifier>.md
@@ -85,7 +85,7 @@ At regular intervals or after significant progress:
 
 - Always verify with the user before making significant changes.
 - Commit frequently with descriptive messages.
-- **Commit the gameplan after every task completion** -- `~/workspace/gameplans/` is a git repo.
+- **Commit the gameplan after every task completion, after approval, when version-controlled**.
 - Keep the gameplan updated as the single source of truth.
 - Surface blockers and open questions early.
-- Write research output to `~/llm-notes/` and commit (also a git repo).
+- Write research output to `~/workspace/gameplans/llm-notes/` and commit after diff review.
