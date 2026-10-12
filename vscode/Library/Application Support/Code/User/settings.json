@@ -54,5 +54,6 @@
     "git.path": "/Users/sohom/.git-ai/bin/git",
     "chat.useHooks": true,
     "chat.disableAIFeatures": true,
-    "harper.dialect": "American"
+    "harper.dialect": "American",
+    "rust-analyzer.checkOnSave": false
 }
