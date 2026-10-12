@@ -31,23 +31,25 @@ These are fixed directories. Do not guess or ask for them.
 |------|-------------|-------------|
 | `~/workspace/` | Parent directory for all project repos | n/a |
 | `~/workspace/tmp/` | Temporary/throwaway clones (always shallow clone) | n/a |
-| `~/workspace/gameplans/` | Gameplan files for active work items | **yes** |
-| `~/workspace/gameplans/llm-notes/` | Research output, notes, and analysis | **yes** |
-| `~/workspace/gameplans/notes/` | General notes and references | **yes** |
+| `~/workspace/gameplans/` | Gameplans and specifications | **yes** |
+| `~/workspace/gameplans/llm-notes/` | Research output and notes | **yes** |
 
-`~/workspace/gameplans/` is a git repository. Commit after modifying gameplans or notes.
+- **Gameplan location**: `~/workspace/gameplans/gameplan-<identifier>.md`
+- **Research location**: `~/workspace/gameplans/llm-notes/<name>.md`
+
+Keep gameplans and notes version-controlled when the repository is available. Show the diff before committing.
 
 ## Workflow
 
-1. **Gameplan first** — scope in `~/workspace/gameplans/gameplan-<JIRA>.md`
-   - Ticket info, objective, acceptance criteria, approach, tasks, questions
+1. **Gameplan first** — scope in `~/workspace/gameplans/gameplan-<identifier>.md`
+   - Identifier, objective, acceptance criteria, approach, tasks, questions
    - Commit gameplan to `gameplans` repo
 
-2. **Fresh pull from base** — `staging` (pcap-collector, terraform, etc.) or `main` (other repos)
-   - `git checkout <base> && git pull origin <base>`
+2. **Fresh base** — use the repository's normal base branch
+   - `git fetch origin`
 
-3. **Fresh worktree** — `~/workspace/<repo>-<JIRA>`
-   - `git worktree add -b sohom/<JIRA> ~/workspace/<repo>-<JIRA> <base>`
+3. **Fresh worktree** — `~/workspace/<repo>-<identifier>`
+   - descriptive branch name without ticket prefix
 
 4. **Implement** — per gameplan tasks
    - One task at a time, mark `[x]` in gameplan
@@ -56,13 +58,13 @@ These are fixed directories. Do not guess or ask for them.
 
 5. **Review** — `/code-review` before MR
 
-6. **MR** — rebased MR creation per `rebased-mr-create` skill
+6. **Delivery** — follow the repository's pull-request or release process
 
 ## Conventions
 
-- Branch: `sohom/<JIRA>`
-- Worktree: `~/workspace/<repo>-<JIRA>`
-- Gameplan: `~/workspace/gameplans/gameplan-<JIRA>.md`
+- Branch: descriptive identifier, no ticket prefix
+- Worktree: `~/workspace/<repo>-<identifier>`
+- Gameplan: `~/workspace/gameplans/gameplan-<identifier>.md`
 - Commit messages: normal English, concise, descriptive
 - Never force push or rewrite history without approval
 
@@ -79,17 +81,17 @@ These are fixed directories. Do not guess or ask for them.
 
 | Step | Skill | Model |
 |------|-------|-------|
-| Scope | `gameplan-workflow` | `openai/gpt-5.5` |
+| Scope | gameplan workflow | `openai/gpt-5.5` |
 | Design (large projects) | `grill-with-docs` | `openai/gpt-5.5` |
 | Implement | `implement` | `cloudflare-workers-ai/@cf/moonshotai/kimi-k2.7-code` |
 | Review | `code-review` | `openai/gpt-5.5` |
-| MR | `rebased-mr-create` | `openai/gpt-5.5` |
+| Delivery | repository process | `openai/gpt-5.5` |
 
 ## Reminders
 
 - Ask before file modifications
 - Show diff before committing project code
-- Commit gameplan changes autonomously
+- Commit gameplan changes after diff review
 - Surface blockers early
 
 ## Safety
@@ -159,4 +161,4 @@ git worktree repair
 - Provide context for recommendations
 - Explain trade-offs when multiple approaches exist
 - Notify using OS tools (like notify-send in linux and osascript in macos) to ask for attention / permissions
-- Write all research output into `~/workspace/gameplans/llm-notes/<filename>.md` when asked to "write" (see Well-Known Locations). Commit after writing.
+- Write research output into `~/workspace/gameplans/llm-notes/<filename>.md`; commit after diff review.

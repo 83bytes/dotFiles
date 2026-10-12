@@ -1,16 +1,16 @@
 ---
 name: init_workspace
-description: Initialize a git worktree workspace with a gameplan file. Use when you need to start a new task/project or create a workspace.
+description: Initialize a git worktree and centralized gameplan for new work.
 ---
 
 # Initialize Workspace Skill
 
-Initialize a new workspace for a task by creating a git worktree and a gameplan file to track progress.
+Initialize a new workspace by creating a git worktree and a centralized gameplan file.
 
 ## Expected Arguments
 
 This skill requires two pieces of information:
-- **identifier**: A ticket ID (e.g., PROJ-123) or a project name (e.g., "refactor-auth-module")
+- **identifier**: A project or task name (e.g., "refactor-auth-module")
 - **primary-repo**: The repository name to create the worktree from
 
 If either piece of information is missing, prompt the user for it.
@@ -21,7 +21,7 @@ If either piece of information is missing, prompt the user for it.
 
 1. Parse the input to extract the identifier and primary-repo.
 2. If either is missing, ask the user to provide them.
-3. Detect if the identifier looks like a ticket ID (matches pattern like `PROJ-123`, `ABC-1234`) or a project name.
+3. Use the identifier as a descriptive project or task name.
 
 ### 2. Validate Environment
 
@@ -35,13 +35,7 @@ If either piece of information is missing, prompt the user for it.
 2. Fetch latest from remote: `git fetch origin`.
 3. Generate branch name and worktree path:
 
-   **If ticket ID:**
-   - Branch format: `<identifier>-<short-summary>` (e.g., `PROJ-123-add-user-auth`)
-   - Worktree path: `~/workspace/<primary-repo>-<identifier>`
-   - Gameplan file: `~/workspace/gameplans/gameplan-<identifier>.md`
-
-   **If project name:**
-   - Branch format: `<identifier>` (e.g., `refactor-auth-module`)
+   - Branch format: `<identifier>`
    - Worktree path: `~/workspace/<primary-repo>-<identifier>`
    - Gameplan file: `~/workspace/gameplans/gameplan-<identifier>.md`
 
@@ -89,9 +83,9 @@ Create `~/workspace/gameplans/gameplan-<identifier>.md` with the following templ
 
 ```
 
-### 5. Commit the Gameplan
+### 5. Review and Commit the Gameplan
 
-The gameplans directory is a git repo. Commit the new file:
+If `~/workspace/gameplans/` is version-controlled, show the diff and receive approval before committing the new file:
 
 ```bash
 cd ~/workspace/gameplans
@@ -104,4 +98,4 @@ git commit -m "add gameplan-<identifier>: initialize workspace"
 1. Confirm the worktree was created successfully.
 2. Display the workspace path: `~/workspace/<primary-repo>-<identifier>`.
 3. Display the gameplan path: `~/workspace/gameplans/gameplan-<identifier>.md`.
-4. **Instruct the user to review and edit the gameplan before starting work.**
+4. Instruct the user to review the gameplan before implementation.

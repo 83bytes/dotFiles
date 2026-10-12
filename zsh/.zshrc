@@ -74,8 +74,8 @@ alias ned="emacsclient -nc"
 
 alias ec="emacsclient -n"
 
-# start silverbullet with personal data dir
-alias sb-start="silverbullet ~/workspace/personal/sb-data"
+# # start silverbullet with personal data dir
+# alias sb-start="silverbullet ~/workspace/personal/sb-data"
 
 unset RPROMPT
 
@@ -271,6 +271,19 @@ export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 if [[ "${HOST%%.*}" == "M25000JX00" ]]; then
   source "$HOME/.cloudflare/vault-helpers.zsh"
 fi
+
+
+# Nix (not on office laptop)
+if [[ "${HOST%%.*}" != "M25000JX00" ]]; then
+    unset __ETC_PROFILE_NIX_SOURCED
+    unset __NIX_PROFILE_SOURCED
+
+    if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+    fi
+fi
+# End Nix
+
 
 if [ -n "${ZSH_DEBUGRC+1}" ]; then
     zprof
