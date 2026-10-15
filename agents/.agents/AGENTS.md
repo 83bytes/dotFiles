@@ -100,6 +100,15 @@ Keep gameplans and notes version-controlled when the repository is available. Sh
 - Never execute destructive commands without explicit approval
 - Preserve existing code structure and conventions
 
+## Secret Boundaries
+
+- No access to `~/.ssh/`, including listing, reading, copying, modifying, or exposing contents
+- No access to `.env`, `.env.*`, or equivalent environment-secret files, including listing, reading, copying, modifying, or exposing contents
+- No access to private keys, passwords, API keys, tokens, cookies, credential stores, or other secrets
+- No searching commands targeting secret paths or secret-file patterns
+- Explicit user authorization required for any exception, with exact path and operation scope
+- Never include secret values in messages, logs, diffs, tool output, commits, or generated files
+
 ## Code Changes
 
 - Explain proposed changes before implementing them
